@@ -135,14 +135,3 @@ class Planet
     end
   end
 end
-
-
-__END__
-<div class="author">
-  <img src="%{avatar}"/>
-</div>
-
-# %{title}
-- Post written by %{author} on %{date}, check it out his blog at <a href="%{link}"> his blog. </a>
-
-%{content}
