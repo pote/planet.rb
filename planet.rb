@@ -3,8 +3,6 @@ require 'nokogiri'
 require 'open-uri'
 require 'ruby-debug'
 
-
-
 class Post < Struct.new(:title, :content, :date, :link, :blog)
 end
 
@@ -31,17 +29,40 @@ class Planet
     @@_blogs = []
   end
 
-  def posts
-    @@_posts
+  def posts(options = {})
+    return @@_posts unless options[:filter]
+
+    filtered_posts = @@_posts
+
+    filtered_posts = case options[:filter][:date]
+                     when true
+                       filtered_posts.reject { |p| p.date.nil? }
+                     when false || nil
+                       filtered_posts.reject { |p| !p.date.nil? }
+                     else
+                       filtered_posts
+                     end
+
+    filtered_posts = case options[:filter][:order]
+                     when :date
+                       with_date = filtered_posts.reject { |p| p.date.nil? }
+                       without_date = filtered_posts.reject { |p| !p.date.nil? }
+
+                       with_date.sort_by { |po| po.date }.reverse + without_date
+                     else
+                       filtered_posts
+                     end
+
+    filtered_posts
   end
 
   def blogs
     @@_blogs
   end
 
-  def aggregate 
+  def aggregate
     BLOGS.each do |blog|
-      @@_blogs  << @blog = Blog.new(
+      @@_blogs << @blog = Blog.new(
         blog[:feed],
         blog[:author],
         blog[:image],
@@ -61,22 +82,6 @@ class Planet
         @blog.posts << @post
       end
     end
-
-    debugger
-
-    order_posts
-
-    @@_posts.each { |p| puts p.title }
-  end
-
-  def order_posts
-    with_date = @@_posts.keep_if { |p| !p.date.nil? }
-    without_date = @@_posts.keep_if { |p| p.date.nil? }
-
-    with_date.sort_by! { |p| p.date }
-
-    debugger
-    @@_posts = with_date + without_date
   end
 end
 
