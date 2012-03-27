@@ -1,7 +1,6 @@
 require 'simple-rss'
 require 'nokogiri'
 require 'open-uri'
-require 'ruby-debug'
 
 BLOGS = [
   {
