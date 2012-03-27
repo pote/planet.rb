@@ -25,7 +25,8 @@ class Post < Struct.new(:title, :content, :date, :link, :blog)
       title: title,
       date: date,
       link: link,
-      content: content
+      content: content,
+      author: blog.author
     }
   end
 
@@ -34,7 +35,9 @@ class Post < Struct.new(:title, :content, :date, :link, :blog)
     "---
       layout: post
       title: %{title}
-      date: %{date}
+      kind: article
+      author: %{author}
+      created_at: %{date}
       comments: false
       categories: ''
 ---
@@ -51,7 +54,7 @@ class Post < Struct.new(:title, :content, :date, :link, :blog)
     name_title = title.downcase.scan(/\w+/).join('-')
 
     # TODO: this should be configurable
-    name_extension = '.markdown'
+    name_extension = '.md'
 
     [name_date, name_title].join('-') + name_extension
   end
