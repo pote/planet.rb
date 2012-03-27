@@ -49,7 +49,7 @@ class Post < Struct.new(:title, :content, :date, :link, :blog)
                   ''
                 end
 
-    name_title = title.split(' ').join('-')
+    name_title = title.downcase.scan(/\w+/).join('-')
 
     # TODO: this should be configurable
     name_extension = '.markdown'
