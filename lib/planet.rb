@@ -38,7 +38,7 @@ class Post < Struct.new(:title, :content, :date, :link, :blog)
       date: %{date}
       comments: false
       categories: ''
-      ---
+---
     " % self.to_hash
   end
 
