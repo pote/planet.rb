@@ -1,0 +1,22 @@
+PATH
+  remote: .
+  specs:
+    planet (0.1)
+      nokogiri
+      simple-rss
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    nokogiri (1.5.2)
+    rake (0.9.2.2)
+    simple-rss (1.2.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  nokogiri
+  planet!
+  rake
+  simple-rss

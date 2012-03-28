@@ -6,16 +6,18 @@ BLOGS = [
   {
     feed:   'http://blog.cuboxlabs.com/atom.xml',
     author: 'Cubox',
-    image:  'http://cuboxlabs.com/img/cubox-humans/could-be-you.png'
+    image:  'http://cuboxlabs.com/img/cubox-humans/could-be-you.png',
+    file_extension: '.html'
   },
   {
     feed:   'http://feeds.feedburner.com/picandocodigo',
     author: 'Fernando Briano',
-    image:  'http://www.gravatar.com/avatar/49c5bd577a2d7ef0628c8ceb90b8c7ae?s=128&d=identicon&r=PG'
+    image:  'http://www.gravatar.com/avatar/49c5bd577a2d7ef0628c8ceb90b8c7ae?s=128&d=identicon&r=PG',
+    file_extension: '.md'
   }
 ]
 
-class Blog < Struct.new(:feed, :author, :image, :posts)
+class Blog < Struct.new(:feed, :author, :image, :file_extension, :posts)
 end
 
 class Post < Struct.new(:title, :content, :date, :link, :blog)
@@ -39,7 +41,6 @@ class Post < Struct.new(:title, :content, :date, :link, :blog)
       author: %{author}
       created_at: %{date}
       comments: false
-      categories: ''
 ---
     " % self.to_hash
   end
@@ -53,10 +54,7 @@ class Post < Struct.new(:title, :content, :date, :link, :blog)
 
     name_title = title.downcase.scan(/\w+/).join('-')
 
-    # TODO: this should be configurable
-    name_extension = '.md'
-
-    [name_date, name_title].join('-') + name_extension
+    [name_date, name_title].join('-')
   end
 end
 
@@ -104,6 +102,7 @@ class Planet
         blog[:feed],
         blog[:author],
         blog[:image],
+        blog[:file_extension],
         []
       )
 
@@ -128,7 +127,7 @@ class Planet
     posts(filter: {date: true, order: :date}).each do |post|
       file_name = '_posts/'.concat post.file_name
 
-      File.open(file_name, "w+") { |f|
+      File.open(file_name + post.blog.file_extension, "w+") { |f|
         f.write(post.header)
         f.write(post.title)
         f.write(post.content)
