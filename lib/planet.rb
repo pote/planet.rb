@@ -35,12 +35,10 @@ class Post < Struct.new(:title, :content, :date, :link, :blog)
   def header
     ## TODO: We need categories/tags
     "---
-      layout: post
       title: %{title}
       kind: article
       author: %{author}
       created_at: %{date}
-      comments: false
 ---
     " % self.to_hash
   end
