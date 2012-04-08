@@ -1,6 +1,10 @@
 # Planet.rb
 
-** This IS a work in progress, most functionality is being implemented, I will release it as a gemwhenever the basic functions are ready. **
+## Important!
+
+This IS a work in progress, most functionality is still being implemented, I will release it as a gem whenever the basic functions are ready.
+
+## What is this devilry?
 
 An awesome RSS/Atom feed aggregator designed with Octopress/Jekyll in mind, it will parse a given
 list of blogs and output them in a format suitable for usage with Octopress.
