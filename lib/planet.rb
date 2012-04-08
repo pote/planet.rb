@@ -1,5 +1,4 @@
 require 'simple-rss'
-require 'nokogiri'
 require 'open-uri'
 
 BLOGS = [
@@ -7,7 +6,7 @@ BLOGS = [
     feed:   'http://blog.cuboxlabs.com/atom.xml',
     author: 'Cubox',
     image:  'http://cuboxlabs.com/img/cubox-humans/could-be-you.png',
-    file_extension: '.html'
+    file_extension: '.md'
   },
   {
     feed:   'http://feeds.feedburner.com/picandocodigo',
@@ -35,10 +34,10 @@ class Post < Struct.new(:title, :content, :date, :link, :blog)
   def header
     ## TODO: We need categories/tags
     "---
-      title: %{title}
-      kind: article
-      author: %{author}
-      created_at: %{date}
+  title: %{title}
+  kind: article
+  author: %{author}
+  created_at: %{date}
 ---
     " % self.to_hash
   end
