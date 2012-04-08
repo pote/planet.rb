@@ -2,7 +2,7 @@
 
 ## Important!
 
-This IS a work in progress, most functionality is still being implemented, I will release it as a gem whenever the basic functions are ready.
+This IS a work in progress, most functionality is still being implemented, I will release it as a gem whenever the basic functions are ready. README Driven Development FTW.
 
 ## What is this devilry?
 
