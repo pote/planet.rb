@@ -4,3 +4,4 @@ gemspec
 gem 'rake'
 gem 'nokogiri'
 gem 'simple-rss'
+gem 'undress'
