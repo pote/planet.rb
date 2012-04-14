@@ -1,0 +1,67 @@
+#!/usr/bin/env ruby
+# 1.9 adds realpath to resolve symlinks; 1.8 doesn't
+# have this method, so we add it so we get resolved symlinks
+# and compatibility
+
+unless File.respond_to? :realpath
+  class File #:nodoc:
+    def self.realpath path
+      return realpath(File.readlink(path)) if symlink?(path)
+      path
+    end
+  end
+end
+$: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/../lib')
+require 'rubygems'
+require 'gli'
+require 'planet'
+require 'ruby-debug'
+
+include GLI
+
+program_desc 'Describe your application here'
+
+version Planet::Version
+
+desc 'Describe generate here'
+arg_name 'Describe arguments to generate here'
+command :generate do |c|
+  c.desc 'Describe a switch to generate'
+  c.switch :s
+
+  c.desc 'Describe a flag to generate'
+  c.default_value 'default'
+  c.flag :f
+  c.action do |global_options,options,args|
+    conf = YAML.load File.open('planet.yml', 'r').read
+
+    @planet = Planet.new
+
+    conf['blogs'].each do |blog|
+      @planet.blogs << Blog.new(
+        blog['feed'],
+        blog['author'],
+        blog['image'],
+        []
+      )
+    end
+
+    @planet.aggregate
+
+    @planet.write_posts
+  end
+end
+
+pre do |global,command,options,args|
+  true
+end
+
+post do |global,command,options,args|
+  true
+end
+
+on_error do |exception|
+  true
+end
+
+exit GLI.run(ARGV)

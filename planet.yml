@@ -1,0 +1,9 @@
+blogs:
+  - author: "Cubox"
+    feed:   "http://blog.cuboxlabs.com/atom.xml"
+    image:  "http://cuboxlabs.com/img/cubox-humans/could-be-you.png"
+
+  - author: "Fernando Briano"
+    feed:   "http://blog.cuboxlabs.com/atom.xml"
+    feed:   "http://feeds.feedburner.com/picandocodigo"
+    image:  "http://www.gravatar.com/avatar/49c5bd577a2d7ef0628c8ceb90b8c7ae?s=128&d=identicon&r=PG"

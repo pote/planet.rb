@@ -1,19 +1,6 @@
 require 'simple-rss'
 require 'open-uri'
 
-BLOGS = [
-  {
-    feed:   'http://blog.cuboxlabs.com/atom.xml',
-    author: 'Cubox',
-    image:  'http://cuboxlabs.com/img/cubox-humans/could-be-you.png',
-  },
-  {
-    feed:   'http://feeds.feedburner.com/picandocodigo',
-    author: 'Fernando Briano',
-    image:  'http://www.gravatar.com/avatar/49c5bd577a2d7ef0628c8ceb90b8c7ae?s=128&d=identicon&r=PG',
-  }
-]
-
 class Blog < Struct.new(:feed, :author, :image, :posts)
 end
 
@@ -87,25 +74,18 @@ class Planet
   end
 
   def aggregate
-    BLOGS.each do |blog|
-      @@_blogs << @blog = Blog.new(
-        blog[:feed],
-        blog[:author],
-        blog[:image],
-        []
-      )
-
-      rss = SimpleRSS.parse open(@blog.feed)
+    @@_blogs.each do |blog|
+      rss = SimpleRSS.parse open(blog.feed)
       rss.entries.each do |entry|
         @@_posts << @post = Post.new(
           entry.fetch(:title),
           entry.fetch(:content).strip,
           entry.fetch(:updated, nil),           # Yeah, I know, Im following the default octopress value for the date parameter.
           entry.fetch(:id, nil),                # Er, this is the full link to the article
-          @blog
+          blog
         )
 
-        @blog.posts << @post
+        blog.posts << @post
       end
     end
   end
