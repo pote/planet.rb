@@ -75,6 +75,7 @@ class Planet
 
   def aggregate
     @@_blogs.each do |blog|
+      puts "=> parsing #{ blog.feed }"
       rss = SimpleRSS.parse open(blog.feed)
       rss.entries.each do |entry|
         @@_posts << @post = Post.new(
@@ -86,12 +87,14 @@ class Planet
         )
 
         blog.posts << @post
+        puts "=> Found post titled #{ @post.title } - by #{ @post.blog.author }"
       end
     end
   end
 
   def write_posts
     Dir.mkdir("_posts") unless File.directory?("_posts")
+    puts "=> Writing #{ posts.size } posts to the _posts directory"
 
     posts(filter: {date: true, order: :date}).each do |post|
       file_name = '_posts/'.concat post.file_name
