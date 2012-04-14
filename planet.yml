@@ -1,8 +1,0 @@
-blogs:
-  - author: "Pablo Astigarraga"
-    feed:   "http://blog.poteland.com/atom.xml"
-    image:  "http://poteland.com/images/avatars/red_mage.png"
-  - author: "Cubox"
-    feed:   "http://blog.cuboxlabs.com/atom.xml"
-    image:  "http://cuboxlabs.com/img/cubox-humans/could-be-you.png"
-
