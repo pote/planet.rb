@@ -39,7 +39,7 @@ kind: article
 author: %{author}
 created_at: %{date}
 ---
-    " % self.to_hash
+" % self.to_hash
   end
 
   def file_name
@@ -102,7 +102,7 @@ class Planet
       rss.entries.each do |entry|
         @@_posts << @post = Post.new(
           entry.fetch(:title),
-          entry.fetch(:content),
+          entry.fetch(:content).strip,
           entry.fetch(:updated, nil),           # Yeah, I know, Im following the default octopress value for the date parameter.
           entry.fetch(:id, nil),                # Er, this is the full link to the article
           @blog
