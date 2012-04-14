@@ -6,13 +6,13 @@ BLOGS = [
     feed:   'http://blog.cuboxlabs.com/atom.xml',
     author: 'Cubox',
     image:  'http://cuboxlabs.com/img/cubox-humans/could-be-you.png',
-    file_extension: '.md'
+    file_extension: '.markdown'
   },
   {
     feed:   'http://feeds.feedburner.com/picandocodigo',
     author: 'Fernando Briano',
     image:  'http://www.gravatar.com/avatar/49c5bd577a2d7ef0628c8ceb90b8c7ae?s=128&d=identicon&r=PG',
-    file_extension: '.md'
+    file_extension: '.markdown'
   }
 ]
 
@@ -24,7 +24,7 @@ class Post < Struct.new(:title, :content, :date, :link, :blog)
   def to_hash
     {
       title: title,
-      date: date,
+      date: date.strftime('%Y-%m-%d %H:%M'),
       link: link,
       content: content,
       author: blog.author
@@ -34,21 +34,16 @@ class Post < Struct.new(:title, :content, :date, :link, :blog)
   def header
     ## TODO: We need categories/tags
     "---
-  title: %{title}
-  kind: article
-  author: %{author}
-  created_at: %{date}
+title: \"%{title}\"
+kind: article
+author: %{author}
+created_at: %{date}
 ---
     " % self.to_hash
   end
 
   def file_name
-    name_date = if date
-                  [date.year, date.month, date.day].join('-')
-                else
-                  ''
-                end
-
+    name_date = date ? date.strftime('%Y-%m-%d') : nil
     name_title = title.downcase.scan(/\w+/).join('-')
 
     [name_date, name_title].join('-')
@@ -126,7 +121,6 @@ class Planet
 
       File.open(file_name + post.blog.file_extension, "w+") { |f|
         f.write(post.header)
-        f.write(post.title)
         f.write(post.content)
         f.close
       }
