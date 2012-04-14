@@ -1,4 +1,4 @@
-require File.join([File.dirname(__FILE__),'lib','planet_version.rb'])
+require File.join([File.dirname(__FILE__),'lib','version.rb'])
 
 spec = Gem::Specification.new do |s|
   s.name = 'planet'
@@ -10,7 +10,7 @@ spec = Gem::Specification.new do |s|
   s.summary = 'An awesome rss/atom feed aggregator designed to work with Octopress/Jekyll'
   s.files = %w(
 bin/planet
-lib/planet_version.rb
+lib/version.rb
 lib/planet.rb
   )
   s.require_paths << 'lib'
