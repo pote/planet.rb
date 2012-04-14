@@ -29,7 +29,7 @@ command :generate do |c|
     @planet = Planet.new
 
     conf['blogs'].each do |blog|
-      @planet.blogs << Blog.new(
+      @planet.blogs << Planet::Blog.new(
         blog['feed'],
         blog['author'],
         blog['image'],

@@ -1,40 +1,6 @@
 require 'simple-rss'
 require 'open-uri'
 
-class Blog < Struct.new(:feed, :author, :image, :posts)
-end
-
-class Post < Struct.new(:title, :content, :date, :link, :blog)
-
-  def to_hash
-    {
-      title: title,
-      date: date.strftime('%Y-%m-%d %H:%M'),
-      link: link,
-      content: content,
-      author: blog.author
-    }
-  end
-
-  def header
-    ## TODO: We need categories/tags
-    "---
-title: \"%{title}\"
-kind: article
-author: %{author}
-created_at: %{date}
----
-" % self.to_hash
-  end
-
-  def file_name
-    name_date = date ? date.strftime('%Y-%m-%d') : nil
-    name_title = title.downcase.scan(/\w+/).join('-')
-
-    [name_date, name_title].join('-')
-  end
-end
-
 class Planet
 
   def initialize
@@ -105,5 +71,39 @@ class Planet
         f.close
       }
     end
+  end
+
+  class Post < Struct.new(:title, :content, :date, :link, :blog)
+
+    def to_hash
+      {
+        title: title,
+        date: date.strftime('%Y-%m-%d %H:%M'),
+        link: link,
+        content: content,
+        author: blog.author
+      }
+    end
+
+    def header
+      ## TODO: We need categories/tags
+      "---
+  title: \"%{title}\"
+  kind: article
+  author: %{author}
+  created_at: %{date}
+  ---
+  " % self.to_hash
+    end
+
+    def file_name
+      name_date = date ? date.strftime('%Y-%m-%d') : nil
+      name_title = title.downcase.scan(/\w+/).join('-')
+
+      [name_date, name_title].join('-')
+    end
+  end
+
+  class Blog < Struct.new(:feed, :author, :image, :posts)
   end
 end
