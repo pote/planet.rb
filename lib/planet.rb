@@ -6,17 +6,15 @@ BLOGS = [
     feed:   'http://blog.cuboxlabs.com/atom.xml',
     author: 'Cubox',
     image:  'http://cuboxlabs.com/img/cubox-humans/could-be-you.png',
-    file_extension: '.markdown'
   },
   {
     feed:   'http://feeds.feedburner.com/picandocodigo',
     author: 'Fernando Briano',
     image:  'http://www.gravatar.com/avatar/49c5bd577a2d7ef0628c8ceb90b8c7ae?s=128&d=identicon&r=PG',
-    file_extension: '.markdown'
   }
 ]
 
-class Blog < Struct.new(:feed, :author, :image, :file_extension, :posts)
+class Blog < Struct.new(:feed, :author, :image, :posts)
 end
 
 class Post < Struct.new(:title, :content, :date, :link, :blog)
@@ -94,7 +92,6 @@ class Planet
         blog[:feed],
         blog[:author],
         blog[:image],
-        blog[:file_extension],
         []
       )
 
@@ -119,7 +116,7 @@ class Planet
     posts(filter: {date: true, order: :date}).each do |post|
       file_name = '_posts/'.concat post.file_name
 
-      File.open(file_name + post.blog.file_extension, "w+") { |f|
+      File.open(file_name + '.markdown', "w+") { |f|
         f.write(post.header)
         f.write(post.content)
         f.close
