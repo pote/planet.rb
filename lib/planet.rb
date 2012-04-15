@@ -65,11 +65,7 @@ class Planet
     posts(filter: {date: true, order: :date}).each do |post|
       file_name = '_posts/'.concat post.file_name
 
-      File.open(file_name + '.markdown', "w+") { |f|
-        f.write(post.header)
-        f.write(post.content)
-        f.close
-      }
+      File.open(file_name + '.markdown', "w+") { |f| f.write(post.to_s) }
     end
   end
 
@@ -88,11 +84,11 @@ class Planet
     def header
       ## TODO: We need categories/tags
       "---
-  title: \"%{title}\"
-  kind: article
-  author: %{author}
-  created_at: %{date}
-  ---
+title: \"%{title}\"
+kind: article
+created_at: %{date}
+layout: post
+---
   " % self.to_hash
     end
 
@@ -101,6 +97,19 @@ class Planet
       name_title = title.downcase.scan(/\w+/).join('-')
 
       [name_date, name_title].join('-')
+    end
+
+    def footer
+      "
+<div class=\"author\">
+  <img src=\"#{ self.blog.image }\"/ style=\"width: 107px; height: 20px;\">
+  <i>Post by #{ self.blog.author } - <a href=\"#{ self.link }\">read it from the source</a></i>
+</div>
+"
+    end
+
+    def to_s
+      self.header + self.content + self.footer
     end
   end
 
