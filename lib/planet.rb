@@ -104,7 +104,9 @@ layout: post
       "
 <div class=\"author\">
   <img src=\"#{ self.blog.image }\"/ style=\"width: 48px; height: 48px;\">
-  <i>Original post by #{ self.blog.author } - <a href=\"#{ self.link }\">read it from the source</a></i>
+  <span style=\"position: absolute; padding: 12px;\">
+    <i>Original post by #{ self.blog.author } - <a href=\"#{ self.link }\">read it from the source</a></i>
+  </span>
 </div>
 "
     end
