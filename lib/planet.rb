@@ -102,7 +102,7 @@ layout: post
     def footer
       "
 <div class=\"author\">
-  <img src=\"#{ self.blog.image }\"/ style=\"width: 107px; height: 20px;\">
+  <img src=\"#{ self.blog.image }\"/ style=\"width: 48; height: 48;\">
   <i>Post by #{ self.blog.author } - <a href=\"#{ self.link }\">read it from the source</a></i>
 </div>
 "
