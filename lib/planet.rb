@@ -87,6 +87,7 @@ class Planet
 title: \"%{title}\"
 kind: article
 created_at: %{date}
+author: %{author}
 layout: post
 ---
   " % self.to_hash
@@ -102,8 +103,8 @@ layout: post
     def footer
       "
 <div class=\"author\">
-  <img src=\"#{ self.blog.image }\"/ style=\"width: 48; height: 48;\">
-  <i>Post by #{ self.blog.author } - <a href=\"#{ self.link }\">read it from the source</a></i>
+  <img src=\"#{ self.blog.image }\"/ style=\"width: 48px; height: 48px;\">
+  <i>Original post by #{ self.blog.author } - <a href=\"#{ self.link }\">read it from the source</a></i>
 </div>
 "
     end
