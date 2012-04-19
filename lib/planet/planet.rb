@@ -48,7 +48,7 @@ class Planet
 
   def aggregate
     @@_blogs.each do |blog|
-      puts "=> parsing #{ blog.feed }"
+      puts "=> Parsing #{ blog.feed }"
       rss = SimpleRSS.parse open(blog.feed)
       rss.entries.each do |entry|
         @@_posts << @post = Post.new(
