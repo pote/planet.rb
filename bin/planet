@@ -41,8 +41,8 @@ command :init do |c|
     default = '## Planet.rb default config file, modify it and spawn awesomeness!
 
 planet:
-    posts_directory: _posts/
-    templates_directory: _layouts/
+    posts_directory: source/_posts/
+    templates_directory: source/_layouts/
 
 blogs:
   - author: "Pablo Astigarraga"
