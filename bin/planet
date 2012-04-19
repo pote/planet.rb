@@ -15,17 +15,6 @@ command :generate do |c|
   c.action do |global_options,options,args|
     conf = YAML.load File.open('planet.yml', 'r').read
 
-    templates_dir = conf.fetch('planet').fetch('templates_directory', '_layout')
-
-    FILES = [templates_dir, templates_dir + 'author.html', templates_dir + 'header.md']
-
-    FILES.each do |file|
-      unless File.exists?(file)
-        puts '=> Your are missing some files in your templates directory, run "planet create_templates" to solve this'
-        raise "Missing Templates"
-      end
-    end
-
     @planet = Planet.new(conf.fetch('planet', {}))
 
     conf['blogs'].each do |blog|
@@ -111,6 +100,22 @@ layout: post
 end
 
 pre do |global,command,options,args|
+  if command.name == :generate
+    conf = YAML.load File.open('planet.yml', 'r').read
+
+    templates_dir = conf.fetch('planet').fetch('templates_directory', '_layout')
+
+    FILES = [templates_dir, templates_dir + 'author.html', templates_dir + 'header.md']
+
+    FILES.each do |file|
+      unless File.exists?(file)
+        puts "=> Your are missing some files in your templates directory, planet.rb will create them for you - make sure to review them on #{ templates_dir }!"
+        response = `planet create_templates`
+        puts response
+      end
+    end
+  end
+
   true
 end
 
