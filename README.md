@@ -39,12 +39,6 @@ Installing ri documentation for planet-0.0.1...
 Installing RDoc documentation for planet-0.0.1...
 ```
 
-We want to go to the source directory
-
-```shell
-cd source
-```
-
 Were we will create a sample planet.yml config file
 
 ```shell
@@ -56,24 +50,28 @@ You will most likely want to edit this yml file (unless you reallly really like 
 
 ```shell
 ▸ planet generate
- => parsing http://blog.poteland.com/atom.xml
- => parsing http://blog.cuboxlabs.com/atom.xml
- => Found post titled Cubox brings back Ruby meetups to Montevideo - by Cubox
- => Found post titled We're hiring - by Cubox
- => Found post titled rubydeps - New gem by Cuboxer - by Cubox
- => Found post titled Cuboxers at wroc_love.rb in Poland - by Cubox
- => Found post titled Open Source Projects - by Cubox
- => Found post titled Machine learning in perspective - by Cubox
- => Found post titled Cubox on finances - by Cubox
- => Found post titled So what is Uruguay like? - by Cubox
- => Found post titled Supporting this weekend's Rails Bugmash - by Cubox
- => Found post titled One App in the App Store - by Cubox
- => Found post titled A new website - by Cubox
- => Found post titled Google Chrome OS: Obvious to the point of being boring. - by Cubox
- => Writing 12 posts to the _posts directory
+=> Your are missing some files in your templates directory, planet.rb will create them for you - make sure to review them on source/_layouts/!
+=> Created default source/_layouts/author.html
+=> Created default source/_layouts/header.md
+=> parsing http://blog.poteland.com/atom.xml
+=> Found post titled I made a pretty gem - Planet.rb - by Pablo Astigarraga
+=> parsing http://blog.cuboxlabs.com/atom.xml
+=> Found post titled Cubox brings back Ruby meetups to Montevideo - by Cubox
+=> Found post titled We're hiring - by Cubox
+=> Found post titled rubydeps - New gem by Cuboxer - by Cubox
+=> Found post titled Cuboxers at wroc_love.rb in Poland - by Cubox
+=> Found post titled Open Source Projects - by Cubox
+=> Found post titled Machine learning in perspective - by Cubox
+=> Found post titled Cubox on finances - by Cubox
+=> Found post titled So what is Uruguay like? - by Cubox
+=> Found post titled Supporting this weekend's Rails Bugmash - by Cubox
+=> Found post titled One App in the App Store - by Cubox
+=> Found post titled A new website - by Cubox
+=> Found post titled Google Chrome OS: Obvious to the point of being boring. - by Cubox
+=> Writing 13 posts to the source/_posts/ directory
 ```
 
-And that's it! your _posts directory should be populated with all relevant posts from the blogs you've configured, and  it's ready to be deployed. :)
+And that's it! your source/_posts/ directory (or whatever you selected in your planet.yml file) should be populated with all relevant posts from the blogs you've configured, and  it's ready to be consumed by Octopress. :)
 
 ## Jekyll Usage
 
