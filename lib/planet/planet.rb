@@ -3,9 +3,19 @@ require 'open-uri'
 
 class Planet
 
-  def initialize
+  def initialize(config = {})
     @@_posts = []
     @@_blogs = []
+
+    @@_config = config
+  end
+
+  def config
+    @@_config
+  end
+
+  def blogs
+    @@_blogs
   end
 
   def posts(options = {})
@@ -35,10 +45,6 @@ class Planet
     filtered_posts
   end
 
-  def blogs
-    @@_blogs
-  end
-
   def aggregate
     @@_blogs.each do |blog|
       puts "=> parsing #{ blog.feed }"
@@ -59,11 +65,12 @@ class Planet
   end
 
   def write_posts
-    Dir.mkdir("_posts") unless File.directory?("_posts")
-    puts "=> Writing #{ posts.size } posts to the _posts directory"
+    posts_dir = @@_config.fetch('posts_directory', '_posts')
+    Dir.mkdir(posts_dir) unless File.directory?(posts_dir)
+    puts "=> Writing #{ posts.size } posts to the #{ posts_dir } directory"
 
     posts(filter: {date: true, order: :date}).each do |post|
-      file_name = '_posts/'.concat post.file_name
+      file_name = posts_dir.concat post.file_name
 
       File.open(file_name + '.markdown', "w+") { |f| f.write(post.to_s) }
     end

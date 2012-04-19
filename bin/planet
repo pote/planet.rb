@@ -1,24 +1,13 @@
 #!/usr/bin/env ruby
-# 1.9 adds realpath to resolve symlinks; 1.8 doesn't
-# have this method, so we add it so we get resolved symlinks
-# and compatibility
 
-unless File.respond_to? :realpath
-  class File #:nodoc:
-    def self.realpath path
-      return realpath(File.readlink(path)) if symlink?(path)
-      path
-    end
-  end
-end
 $: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/../lib')
 require 'rubygems'
 require 'gli'
-require 'planet'
+require 'planet/planet'
 
 include GLI
 
-program_desc 'Describe your application here'
+program_desc 'Planet.rb is an awesome feed-aggregator gem, that basically consumes RSS/Atom feeds and outputs them in a format suitable to use with Octopress or Jekyll'
 
 desc 'Parses planet.yml file for blogs and generates their posts in Jekyll compliant format under the _posts directory'
 command :generate do |c|
@@ -26,7 +15,8 @@ command :generate do |c|
   c.action do |global_options,options,args|
     conf = YAML.load File.open('planet.yml', 'r').read
 
-    @planet = Planet.new
+    @planet = Planet.new(conf.fetch('planet', {}))
+    #@planet = Planet.new()
 
     conf['blogs'].each do |blog|
       @planet.blogs << Planet::Blog.new(
@@ -43,12 +33,18 @@ command :generate do |c|
   end
 end
 
-desc 'Creates basic planet.yml file'
+desc 'Creates basic planet.yml files'
 command :init do |c|
   c.action do |global_options,options,args|
     raise Exception.new('There is already a planet.yml file present') if File.exist? 'planet.yml'
 
-    default = 'blogs:
+    default = '## Planet.rb default config file, modify it and spawn awesomeness!
+
+planet:
+    posts_directory: _posts/
+    templates_directory: _templates/
+
+blogs:
   - author: "Pablo Astigarraga"
     feed:   "http://blog.poteland.com/atom.xml"
     image:  "http://poteland.com/images/avatars/red_mage.png"
@@ -58,7 +54,7 @@ command :init do |c|
     image:  "http://cuboxlabs.com/img/cubox-humans/could-be-you.png"'
 
     File.open('planet.yml', 'w') { |f| f.write(default) }
-    puts '=> created default planet.yml'
+    puts '=> Created default planet.yml'
   end
 end
 
