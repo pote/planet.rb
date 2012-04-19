@@ -50,12 +50,12 @@ You will most likely want to edit this yml file (unless you reallly really like 
 
 ```shell
 ▸ planet generate
-=> Your are missing some files in your templates directory, planet.rb will create them for you - make sure to review them on source/_layouts/!
+=> You are missing some files in your templates directory, planet.rb will create them for you - make sure to review them on source/_layouts/!
 => Created default source/_layouts/author.html
 => Created default source/_layouts/header.md
-=> parsing http://blog.poteland.com/atom.xml
+=> Parsing http://blog.poteland.com/atom.xml
 => Found post titled I made a pretty gem - Planet.rb - by Pablo Astigarraga
-=> parsing http://blog.cuboxlabs.com/atom.xml
+=> Parsing http://blog.cuboxlabs.com/atom.xml
 => Found post titled Cubox brings back Ruby meetups to Montevideo - by Cubox
 => Found post titled We're hiring - by Cubox
 => Found post titled rubydeps - New gem by Cuboxer - by Cubox
