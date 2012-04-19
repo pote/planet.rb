@@ -20,4 +20,5 @@ lib/planet/planet.rb
   s.add_development_dependency('rake')
   s.add_runtime_dependency('gli')
   s.add_runtime_dependency('simple-rss')
+  s.add_runtime_dependency('mustache')
 end

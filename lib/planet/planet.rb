@@ -1,5 +1,6 @@
 require 'simple-rss'
 require 'open-uri'
+require 'mustache'
 
 class Planet
 
@@ -70,7 +71,7 @@ class Planet
     puts "=> Writing #{ posts.size } posts to the #{ posts_dir } directory"
 
     posts(filter: {date: true, order: :date}).each do |post|
-      file_name = posts_dir.concat post.file_name
+      file_name = posts_dir + post.file_name
 
       File.open(file_name + '.markdown', "w+") { |f| f.write(post.to_s) }
     end
@@ -90,14 +91,16 @@ class Planet
 
     def header
       ## TODO: We need categories/tags
-      "---
-title: \"%{title}\"
-kind: article
-created_at: %{date}
-author: %{author}
-layout: post
----
-  " % self.to_hash
+      file = self.blog.planet.config.fetch('templates_directory', '_layouts/') + 'header.md'
+      file_contents = File.open(file, 'r').read
+
+      data = {
+        title: self.title,
+        date: self.date,
+        author: self.blog.author
+      }
+
+      Mustache.render(file_contents, data)
     end
 
     def file_name
@@ -108,14 +111,16 @@ layout: post
     end
 
     def footer
-      "
-<div class=\"author\">
-  <img src=\"#{ self.blog.image }\"/ style=\"width: 48px; height: 48px;\">
-  <span style=\"position: absolute; padding: 12px;\">
-    <i>Original post by #{ self.blog.author } - <a href=\"#{ self.link }\">read it from the source</a></i>
-  </span>
-</div>
-"
+      file = self.blog.planet.config.fetch('templates_directory', '_layouts/') + 'author.html'
+      file_contents = File.open(file, 'r').read
+
+      data = {
+        image: self.blog.image,
+        author: self.blog.author,
+        link: self.link
+      }
+
+      Mustache.render(file_contents, data)
     end
 
     def to_s
@@ -123,6 +128,6 @@ layout: post
     end
   end
 
-  class Blog < Struct.new(:feed, :author, :image, :posts)
+  class Blog < Struct.new(:feed, :author, :image, :posts, :planet)
   end
 end

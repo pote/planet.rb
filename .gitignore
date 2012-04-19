@@ -1,4 +1,5 @@
 _posts/
+_layouts/
+planet.yml
 *.gem
 *.gempsec
-sample.txt
