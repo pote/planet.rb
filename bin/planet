@@ -105,6 +105,9 @@ pre do |global,command,options,args|
 
     templates_dir = conf.fetch('planet').fetch('templates_directory', '_layout')
 
+    ## I probably shouldn't do this, but I want the default setup to be simple and smooth.
+    Dir.mkdir('source') if templates_dir.split('/').first == 'source' && !File.exists?('source')
+
     FILES = [templates_dir, templates_dir + 'author.html', templates_dir + 'header.md']
 
     FILES.each do |file|
