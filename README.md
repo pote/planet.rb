@@ -111,4 +111,7 @@ You don't really need an explanation if you are using Jekyll, just initialize an
 * Create complete templates and posts directory tree if necessary
 * Write blog post on "Importing your blog to octopress with planet.rb"
 * Find out why http://microformatique.com/optimus/?uri=http://mcdlr.com/&format=rss doesnt work
+* Get images from twitter if provided, or in some other magical way.
+* Handle images that are not aligned correctly?
 * Create "Participating blogs" template for the sidebar
+* Find an alternative to Feedzirra that doesnt install a million dependencies.
