@@ -104,7 +104,6 @@ blogs:
 You don't really need an explanation if you are using Jekyll, just initialize and generate the planet whenever you have your _posts directory and you'll be good to go :)
 
 
-
 ## Todo:
 
 * Support blog author being taken out directly from the feed so it's not required on planet.yml (move author to Post class?)
@@ -114,4 +113,5 @@ You don't really need an explanation if you are using Jekyll, just initialize an
 * Get images from twitter if provided, or in some other magical way.
 * Handle images that are not aligned correctly?
 * Create "Participating blogs" template for the sidebar
+* Handle categories/tags?
 * Find an alternative to Feedzirra that doesnt install a million dependencies.
