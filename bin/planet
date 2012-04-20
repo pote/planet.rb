@@ -20,6 +20,7 @@ command :generate do |c|
     conf['blogs'].each do |blog|
       @planet.blogs << Planet::Blog.new(
         feed: blog['feed'],
+        url: blog['url'],
         author: blog['author'],
         image: blog['image'],
         posts: [],

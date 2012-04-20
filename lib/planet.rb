@@ -49,7 +49,7 @@ class Planet
     @@_blogs.each do |blog|
       puts "=> Parsing #{ blog.feed }"
       feed = Feedzirra::Feed.fetch_and_parse(blog.feed)
-      blog.url = feed.url
+      blog.url ||= feed.url
       feed.entries.each do |entry|
         @@_posts << @post = Post.new(
           title: entry.title,
