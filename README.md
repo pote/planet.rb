@@ -107,8 +107,8 @@ You don't really need an explanation if you are using Jekyll, just initialize an
 
 ## Todo:
 
-* Find out what happens on this post  http://picandocodigo.net/?x=0&y=0&s=ActsAsList
 * Support blog author being taken out directly from the feed so it's not required on planet.yml (move author to Post class?)
 * Create complete templates and posts directory tree if necessary
 * Write blog post on "Importing your blog to octopress with planet.rb"
 * Find out why http://microformatique.com/optimus/?uri=http://mcdlr.com/&format=rss doesnt work
+* Create "Participating blogs" template for the sidebar

@@ -56,7 +56,7 @@ class Planet
 
       feed.entries.each do |entry|
         @@_posts << @post = Post.new(
-          title: entry.title,
+          title: entry.title.sanitize,
           content: entry.content.strip.gsub('<img src="', "<img src=\"#{ blog.url }"),
           date: entry.published,
           url: blog.url + entry.url,
