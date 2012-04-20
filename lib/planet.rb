@@ -55,7 +55,7 @@ class Planet
           title: entry.title,
           content: entry.content.strip.gsub('<img src="', "<img src=\"#{ blog.url }"),
           date: entry.published,
-          link: blog.url + entry.url,
+          url: blog.url + entry.url,
           blog: blog
         )
 
@@ -77,13 +77,13 @@ class Planet
     end
   end
 
-  class Post < Struct.new(:title, :content, :date, :link, :blog)
+  class Post < Struct.new(:title, :content, :date, :url, :blog)
 
     def initialize(attributes = {})
       self.title = attributes.fetch(:title, nil)
       self.content = attributes.fetch(:content, nil)
       self.date = attributes.fetch(:date, nil)
-      self.link = attributes.fetch(:link, nil)
+      self.url = attributes.fetch(:url, nil)
       self.blog = attributes.fetch(:blog, nil)
     end
 
@@ -91,7 +91,7 @@ class Planet
       {
         title: title,
         date: date.strftime('%Y-%m-%d %H:%M'),
-        link: link,
+        url: url,
         content: content,
         author: blog.author
       }
@@ -125,7 +125,8 @@ class Planet
       data = {
         image: self.blog.image,
         author: self.blog.author,
-        link: self.link
+        blog: self.blog.url,
+        twitter: self.blog.twitter ? "http://twitter.com/#{ self.blog.twitter }" : self.blog.url
       }
 
       Mustache.render(file_contents, data)

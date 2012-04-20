@@ -49,10 +49,12 @@ blogs:
   - author: "Pablo Astigarraga"
     feed:   "http://blog.poteland.com/atom.xml"
     image:  "http://poteland.com/images/avatars/red_mage.png"
+    twitter: "poteland"
 
   - author: "Cubox"
     feed:   "http://blog.cuboxlabs.com/atom.xml"
-    image:  "http://cuboxlabs.com/img/cubox-humans/could-be-you.png"'
+    image:  "http://cuboxlabs.com/img/cubox-humans/could-be-you.png"
+    twitter: "cubox"'
 
     File.open('planet.yml', 'w') { |f| f.write(default) }
 
@@ -70,9 +72,9 @@ command :create_templates do |c|
     Dir.mkdir(templates_dir) unless File.exists?(templates_dir)
 
     author = '<div class="author">
-<img src="{{ image }}" style="width: 48px; height: 48px;">
+<a href="{{ twitter }}"><img src="{{ image }}" style="width: 48px; height: 48px;"></a>
 <span style="position: absolute; padding: 12px;">
-  <i>Original post by {{ author }} - <a href="{{ link }}">read it from the source</a></i>
+  <i>Original post by {{ author }} - <a href="{{ blog }}">check out the original blog</a></i>
 </span>
 </div>
 '
