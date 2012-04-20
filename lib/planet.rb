@@ -49,8 +49,11 @@ class Planet
     @@_blogs.each do |blog|
       puts "=> Parsing #{ blog.feed }"
       feed = Feedzirra::Feed.fetch_and_parse(blog.feed)
+
+      blog.name ||= feed.title || 'the source'
       blog.url ||= feed.url
       raise "#{ blog.author }'s blog does not have a url field on it's feed, you will need to specify it on planet.yml" if blog.url.nil?
+
       feed.entries.each do |entry|
         @@_posts << @post = Post.new(
           title: entry.title,
@@ -88,16 +91,6 @@ class Planet
       self.blog = attributes.fetch(:blog, nil)
     end
 
-    def to_hash
-      {
-        title: title,
-        date: date.strftime('%Y-%m-%d %H:%M'),
-        url: url,
-        content: content,
-        author: blog.author
-      }
-    end
-
     def header
       ## TODO: We need categories/tags
       file = self.blog.planet.config.fetch('templates_directory', '_layouts/') + 'header.md'
@@ -126,7 +119,8 @@ class Planet
       data = {
         image: self.blog.image,
         author: self.blog.author,
-        blog: self.blog.url,
+        blog_url: self.blog.url,
+        blog_title: self.blog.name,
         twitter: self.blog.twitter ? "http://twitter.com/#{ self.blog.twitter }" : self.blog.url
       }
 
@@ -138,11 +132,12 @@ class Planet
     end
   end
 
-  class Blog < Struct.new(:url, :feed, :author, :image, :twitter, :posts, :planet)
+  class Blog < Struct.new(:url, :feed, :name, :author, :image, :twitter, :posts, :planet)
 
     def initialize(attributes = {})
       self.url = attributes[:url]
       self.feed = attributes[:feed]
+      self.name = attributes[:name]
       self.author = attributes[:author]
       self.image = attributes[:image]
       self.twitter = attributes[:twitter]

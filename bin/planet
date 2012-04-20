@@ -60,7 +60,6 @@ blogs:
     url: "http://blog.poteland.com"    # => only required for people that don\'t have a \'url\' field on their RSS/Atom field'
 
 
-
     File.open('planet.yml', 'w') { |f| f.write(default) }
 
     puts '=> Created default planet.yml'
@@ -77,10 +76,10 @@ command :create_templates do |c|
     Dir.mkdir(templates_dir) unless File.exists?(templates_dir)
 
     author = '<div class="author">
-<a href="{{ twitter }}"><img src="{{ image }}" style="width: 48px; height: 48px;"></a>
-<span style="position: absolute; padding: 12px;">
-  <i>Original post by {{ author }} - <a href="{{ blog }}">check out the original blog</a></i>
-</span>
+  <img src="{{ image }}" style="width: 48px; height: 48px;">
+  <span style="position: absolute; padding: 12px;">
+    <i>Original post by <a href="{{ twitter}}">{{ author }}</a>- check out <a href="{{ blog_url }}">{{ blog_title }}</a></i>
+  </span>
 </div>
 '
     if !File.exists?(templates_dir + 'author.html')
