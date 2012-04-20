@@ -76,9 +76,9 @@ command :create_templates do |c|
     Dir.mkdir(templates_dir) unless File.exists?(templates_dir)
 
     author = '<div class="author">
-  <img src="{{ image }}" style="width: 48px; height: 48px;">
-  <span style="position: absolute; padding: 12px;">
-    <i>Original post by <a href="{{ twitter}}">{{ author }}</a>- check out <a href="{{ blog_url }}">{{ blog_title }}</a></i>
+  <img src="{{ image }}" style="width: 96px; height: 96;">
+  <span style="position: absolute; padding: 32px 15px;">
+    <i>Original post by <a href="{{ twitter}}">{{ author }}</a> - check out <a href="{{ blog_url }}">{{ blog_title }}</a></i>
   </span>
 </div>
 '

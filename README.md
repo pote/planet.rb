@@ -107,6 +107,5 @@ You don't really need an explanation if you are using Jekyll, just initialize an
 
 ## Todo:
 
-* Add blog title support (instead of "read it from the source"), specifically configured in planet.yml or taken from the feed
 * Support blog author being taken out directly from the feed so it's not required on planet.yml (move author to Post class?)
-
+* Create complete templates and posts directory tree if necessary
