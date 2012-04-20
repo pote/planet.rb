@@ -50,6 +50,7 @@ class Planet
       puts "=> Parsing #{ blog.feed }"
       feed = Feedzirra::Feed.fetch_and_parse(blog.feed)
       blog.url ||= feed.url
+      raise "#{ blog.author }'s blog does not have a url field on it's feed, you will need to specify it on planet.yml" if blog.url.nil?
       feed.entries.each do |entry|
         @@_posts << @post = Post.new(
           title: entry.title,
