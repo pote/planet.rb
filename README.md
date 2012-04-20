@@ -99,7 +99,7 @@ blogs:
 ```
 
 
-## Jekyll Usag
+## Jekyll Usage
 
 You don't really need an explanation if you are using Jekyll, just initialize and generate the planet whenever you have your _posts directory and you'll be good to go :)
 
