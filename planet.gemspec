@@ -11,7 +11,7 @@ spec = Gem::Specification.new do |s|
   s.files = %w(
 bin/planet
 lib/planet/version.rb
-lib/planet/planet.rb
+lib/planet.rb
   )
   s.require_paths << 'lib'
   s.has_rdoc = false
