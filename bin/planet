@@ -47,15 +47,19 @@ planet:
     templates_directory: source/_layouts/
 
 blogs:
-  - author: "Pablo Astigarraga"
-    feed:   "http://blog.poteland.com/atom.xml"
-    image:  "http://poteland.com/images/avatars/red_mage.png"
-    twitter: "poteland"
-
+  # Bare minimum to get it working
   - author: "Cubox"
     feed:   "http://blog.cuboxlabs.com/atom.xml"
     image:  "http://cuboxlabs.com/img/cubox-humans/could-be-you.png"
-    twitter: "cubox"'
+
+  - author: "Pablo Astigarraga"
+    feed:   "http://blog.poteland.com/atom.xml"
+    image:  "http://poteland.com/images/avatars/red_mage.png"
+    # Other fields:
+    twitter: "poteland"
+    url: "http://blog.poteland.com"    # => only required for people that don\'t have a \'url\' field on their RSS/Atom field'
+
+
 
     File.open('planet.yml', 'w') { |f| f.write(default) }
 
