@@ -91,18 +91,27 @@ class Planet
       self.blog = attributes.fetch(:blog, nil)
     end
 
+    def to_hash
+      {
+        post_content: self.content,
+        post_title: self.title,
+        post_date: self.date,
+        image_url: self.blog.image,
+        author: self.blog.author,
+        blog_url: self.blog.url,
+        blog_name: self.blog.name,
+        post_url: self.url,
+        twitter: self.blog.twitter,
+        twitter_uri: "http://twitter.com/#{ self.blog.twitter }"
+      }
+    end
+
     def header
       ## TODO: We need categories/tags
       file = self.blog.planet.config.fetch('templates_directory', '_layouts/') + 'header.md'
       file_contents = File.open(file, 'r').read
 
-      data = {
-        title: self.title,
-        date: self.date,
-        author: self.blog.author
-      }
-
-      Mustache.render(file_contents, data)
+      Mustache.render(file_contents, self.to_hash)
     end
 
     def file_name
@@ -116,15 +125,7 @@ class Planet
       file = self.blog.planet.config.fetch('templates_directory', '_layouts/') + 'author.html'
       file_contents = File.open(file, 'r').read
 
-      data = {
-        image: self.blog.image,
-        author: self.blog.author,
-        blog_url: self.blog.url,
-        blog_title: self.blog.name,
-        twitter: self.blog.twitter ? "http://twitter.com/#{ self.blog.twitter }" : self.blog.url
-      }
-
-      Mustache.render(file_contents, data)
+      Mustache.render(file_contents, self.to_hash)
     end
 
     def to_s
