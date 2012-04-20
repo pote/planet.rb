@@ -19,11 +19,12 @@ command :generate do |c|
 
     conf['blogs'].each do |blog|
       @planet.blogs << Planet::Blog.new(
-        blog['feed'],
-        blog['author'],
-        blog['image'],
-        [],
-        @planet
+        feed: blog['feed'],
+        author: blog['author'],
+        image: blog['image'],
+        posts: [],
+        planet: @planet,
+        twitter: blog['twitter']
       )
     end
 

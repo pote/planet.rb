@@ -1,5 +1,4 @@
-require 'simple-rss'
-require 'open-uri'
+require 'feedzirra'
 require 'mustache'
 
 class Planet
@@ -49,14 +48,15 @@ class Planet
   def aggregate
     @@_blogs.each do |blog|
       puts "=> Parsing #{ blog.feed }"
-      rss = SimpleRSS.parse open(blog.feed)
-      rss.entries.each do |entry|
+      feed = Feedzirra::Feed.fetch_and_parse(blog.feed)
+      blog.url = feed.url
+      feed.entries.each do |entry|
         @@_posts << @post = Post.new(
-          entry.fetch(:title),
-          entry.fetch(:content).strip,
-          entry.fetch(:updated, nil),           # Yeah, I know, Im following the default octopress value for the date parameter.
-          entry.fetch(:id, nil),                # Er, this is the full link to the article
-          blog
+          title: entry.title,
+          content: entry.content.strip.gsub('<img src="', "<img src=\"#{ blog.url }"),
+          date: entry.published,
+          link: blog.url + entry.url,
+          blog: blog
         )
 
         blog.posts << @post
@@ -78,6 +78,14 @@ class Planet
   end
 
   class Post < Struct.new(:title, :content, :date, :link, :blog)
+
+    def initialize(attributes = {})
+      self.title = attributes.fetch(:title, nil)
+      self.content = attributes.fetch(:content, nil)
+      self.date = attributes.fetch(:date, nil)
+      self.link = attributes.fetch(:link, nil)
+      self.blog = attributes.fetch(:blog, nil)
+    end
 
     def to_hash
       {
@@ -128,6 +136,16 @@ class Planet
     end
   end
 
-  class Blog < Struct.new(:feed, :author, :image, :posts, :planet)
+  class Blog < Struct.new(:url, :feed, :author, :image, :twitter, :posts, :planet)
+
+    def initialize(attributes = {})
+      self.url = attributes[:url]
+      self.feed = attributes[:feed]
+      self.author = attributes[:author]
+      self.image = attributes[:image]
+      self.twitter = attributes[:twitter]
+      self.posts = attributes.fetch('posts', [])
+      self.planet = attributes[:planet]
+    end
   end
 end
