@@ -41,7 +41,7 @@ class Planet < Struct.new(:config, :blogs)
 
   def write_posts
     posts_dir = self.config.fetch('posts_directory', '_posts')
-    Dir.mkdir(posts_dir) unless File.directory?(posts_dir)
+    FileUtils.mkdir_p(posts_dir)
     puts "=> Writing #{ self.posts.size } posts to the #{ posts_dir } directory"
 
     self.posts.each do |post|

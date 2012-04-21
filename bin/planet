@@ -73,7 +73,7 @@ command :create_templates do |c|
 
     templates_dir = conf.fetch('planet').fetch('templates_directory', '_layouts/')
 
-    Dir.mkdir(templates_dir) unless File.exists?(templates_dir)
+    FileUtils.mkdir_p(templates_dir)
 
     author = '
 <div class="author">
@@ -112,9 +112,7 @@ pre do |global,command,options,args|
     conf = YAML.load File.open('planet.yml', 'r') { |f| f.read }
 
     templates_dir = conf.fetch('planet').fetch('templates_directory', 'source/_layouts')
-
-    ## I probably shouldn't do this, but I want the default setup to be simple and smooth.
-    Dir.mkdir('source') if templates_dir.split('/').first == 'source' && !File.exists?('source')
+    FileUtils.mkdir_p(templates_dir)
 
     FILES = [templates_dir, templates_dir + 'author.html', templates_dir + 'header.md']
 
