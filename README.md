@@ -98,14 +98,34 @@ blogs:
 
 ```
 
+## Layouts
+
+So this is pretty sweet: planet.rb doesn't really want to inject html and random stuff that you can't control into your posts, that's why it uses templates to handle the extra text (namely: the header and footer of each post). This files are by default created in source/_layouts, and this is the list of stuff you can dynamically put in there, along with what you would get form it on my own blog.
+
+```mustache
+   {{ post_title }}             # => "I Made a Pretty Gem - Planet.rb"
+   {{ post_url }}               # => "http://blog.poteland.com/blog/2012/04/14/i-made-a-pretty-gem-planet-dot-rb/"
+   {{ post_date }}              # => "2012-04-14 05:17:00 UTC"
+   {{ post_content }}           # => "I’ve been hurting to write this ever since we had the idea of creating a Planet for Cubox..." (Continued)
+   {{ blog_name }}              # => "This is where I tell you stuff"
+   {{ blog_url }}               # => "http://blog.poteland.com"
+   {{ image_url }}              # => "http://poteland.com/images/avatars/red_mage.png"
+   {{ author }}                 # => "Pablo Astigarraga"
+   {{ twitter }}                # => "poteland"
+   {{ twitter_url }}            # => "http://twitter.com/poteland"
+```
+
+So feel free to customize planet.rb layouts any way you see fit (but please don't take away the author.html files! You should definitely give credit to the author of hte post)
 
 ## Jekyll Usage
 
 You don't really need an explanation if you are using Jekyll, just initialize and generate the planet whenever you have your _posts directory and you'll be good to go :)
 
 
-## Todo:
+## TODO:
 
+* Contemplate nested planets - images, particularly.
+* Handle upgrade of planet template files on gem update
 * Create complete templates and posts directory tree if necessary
 * Write blog post on "Importing your blog to octopress with planet.rb"
 * Find out why http://microformatique.com/optimus/?uri=http://mcdlr.com/&format=rss doesnt work
