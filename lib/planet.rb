@@ -1,7 +1,9 @@
 require 'feedzirra'
 require 'mustache'
 
-class Planet < Struct.new(:config, :blogs)
+class Planet
+
+  attr_accessor :config, :blogs
 
   def initialize(attributes = {})
     self.config = attributes[:config]
@@ -22,7 +24,7 @@ class Planet < Struct.new(:config, :blogs)
   def write_posts
     posts_dir = self.config.fetch('posts_directory', 'source/_posts/')
     FileUtils.mkdir_p(posts_dir)
-    puts "=> Writing #{ self.posts.size } posts to the #{ posts_dir } directory"
+    puts "=> Writing #{ self.posts.size } posts to the #{ posts_dir } directory."
 
     self.posts.each do |post|
       file_name = posts_dir + post.file_name
@@ -31,7 +33,9 @@ class Planet < Struct.new(:config, :blogs)
     end
   end
 
-  class Post < Struct.new(:title, :content, :date, :url, :blog)
+  class Post
+
+    attr_accessor :title, :content, :date, :url, :blog
 
     def initialize(attributes = {})
       self.title = attributes.fetch(:title, nil)
@@ -84,7 +88,9 @@ class Planet < Struct.new(:config, :blogs)
 
   end
 
-  class Blog < Struct.new(:url, :feed, :name, :author, :image, :twitter, :posts, :planet)
+  class Blog
+
+    attr_accessor :url, :feed, :name, :author, :image, :twitter, :posts, :planet
 
     def initialize(attributes = {})
       self.url = attributes[:url]
