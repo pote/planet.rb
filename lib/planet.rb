@@ -1,80 +1,50 @@
 require 'feedzirra'
 require 'mustache'
 
-class Planet
+class Planet < Struct.new(:config, :blogs)
 
-  def initialize(config = {})
-    @@_posts = []
-    @@_blogs = []
-
-    @@_config = config
+  def initialize(attributes = {})
+    self.config = attributes[:config]
+    self.blogs = attributes.fetch(:blogs, [])
   end
 
-  def config
-    @@_config
-  end
-
-  def blogs
-    @@_blogs
-  end
-
-  def posts(options = {})
-    return @@_posts unless options[:filter]
-
-    filtered_posts = @@_posts
-
-    filtered_posts = case options[:filter][:date]
-                     when true
-                       filtered_posts.reject { |p| p.date.nil? }
-                     when false || nil
-                       filtered_posts.reject { |p| !p.date.nil? }
-                     else
-                       filtered_posts
-                     end
-
-    filtered_posts = case options[:filter][:order]
-                     when :date
-                       with_date = filtered_posts.reject { |p| p.date.nil? }
-                       without_date = filtered_posts.reject { |p| !p.date.nil? }
-
-                       with_date.sort_by { |po| po.date }.reverse + without_date
-                     else
-                       filtered_posts
-                     end
-
-    filtered_posts
+  def posts
+    self.blogs.map { |b| b.posts }.flatten
   end
 
   def aggregate
-    @@_blogs.each do |blog|
+    self.blogs.each do |blog|
       puts "=> Parsing #{ blog.feed }"
       feed = Feedzirra::Feed.fetch_and_parse(blog.feed)
 
       blog.name ||= feed.title || 'the source'
       blog.url ||= feed.url
-      raise "#{ blog.author }'s blog does not have a url field on it's feed, you will need to specify it on planet.yml" if blog.url.nil?
+
+      ## This is slightly gay.
+      if blog.url.nil?
+        raise "#{ blog.author }'s blog does not have a url field on it's feed, you will need to specify it on planet.yml"
+      end
 
       feed.entries.each do |entry|
-        @@_posts << @post = Post.new(
+        blog.posts << @post = Post.new(
           title: entry.title.sanitize,
-          content: entry.content.strip.gsub('<img src="', "<img src=\"#{ blog.url }"),
-          date: entry.published,
+          content: entry.content.strip.gsub('<img src="', "<img src=\"#{ blog.url }"),    ## => I don't like this that much, move it away
+          date: entry.published,                                                          ##    and check that it's needed post by post.
           url: blog.url + entry.url,
           blog: blog
         )
 
-        blog.posts << @post
         puts "=> Found post titled #{ @post.title } - by #{ @post.blog.author }"
       end
     end
   end
 
   def write_posts
-    posts_dir = @@_config.fetch('posts_directory', '_posts')
+    posts_dir = self.config.fetch('posts_directory', '_posts')
     Dir.mkdir(posts_dir) unless File.directory?(posts_dir)
-    puts "=> Writing #{ posts.size } posts to the #{ posts_dir } directory"
+    puts "=> Writing #{ self.posts.size } posts to the #{ posts_dir } directory"
 
-    posts(filter: {date: true, order: :date}).each do |post|
+    self.posts.each do |post|
       file_name = posts_dir + post.file_name
 
       File.open(file_name + '.markdown', "w+") { |f| f.write(post.to_s) }
@@ -109,7 +79,7 @@ class Planet
     def header
       ## TODO: We need categories/tags
       file = self.blog.planet.config.fetch('templates_directory', '_layouts/') + 'header.md'
-      file_contents = File.open(file, 'r').read
+      file_contents = File.open(file, 'r') { |f| f.read }
 
       Mustache.render(file_contents, self.to_hash)
     end
@@ -123,13 +93,13 @@ class Planet
 
     def footer
       file = self.blog.planet.config.fetch('templates_directory', '_layouts/') + 'author.html'
-      file_contents = File.open(file, 'r').read
+      file_contents = File.open(file, 'r') { |f| f.read }
 
       Mustache.render(file_contents, self.to_hash)
     end
 
     def to_s
-      self.header + self.content + self.footer
+      "#{ header }#{ content }#{ footer }"
     end
   end
 
