@@ -78,7 +78,7 @@ class Planet < Struct.new(:config, :blogs)
     def header
       ## TODO: We need categories/tags
       file = self.blog.planet.config.fetch('templates_directory', '_layouts/') + 'header.md'
-      file_contents = File.open(file, 'r') { |f| f.read }
+      file_contents = File.read(file)
 
       Mustache.render(file_contents, self.to_hash)
     end
@@ -92,7 +92,7 @@ class Planet < Struct.new(:config, :blogs)
 
     def footer
       file = self.blog.planet.config.fetch('templates_directory', '_layouts/') + 'author.html'
-      file_contents = File.open(file, 'r') { |f| f.read }
+      file_contents = File.read(file)
 
       Mustache.render(file_contents, self.to_hash)
     end
