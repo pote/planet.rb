@@ -8,7 +8,7 @@ This gem is also **[gloriously untested](http://jamiesharpe.info/image/comics/ha
 
 ## What is this devilry?
 
-An awesome RSS/Atom feed aggregator designed with Octopress/Jekyll in mind, it will parse a given
+An awesome RSS/Atom feed aggregator designed with [Octopress](http://octopress.org/)/[Jekyll](http://jekyllrb.com/) in mind, it will parse a given
 list of blogs and output them in a format suitable for usage with these amazing blogging engines.
 
 ## Main Features
