@@ -130,7 +130,7 @@ You don't really need an explanation if you are using Jekyll, just initialize an
 
 # Sponsorship
 
-This project is sponsored by the amazing people at [Cubox](http://cuboxlabs.com) that make it possible for me to work on this without dying of starvation, BIG THANKS to them! (oh, and their [blog](http://blog.cuboxlabs.com] uses planet.rb, too! ;) )
+This project is sponsored by the amazing people at [Cubox](http://cuboxlabs.com) that make it possible for me to work on this without dying of starvation, BIG THANKS to them! (oh, and their [blog](http://blog.cuboxlabs.com) uses planet.rb, too! ;) )
 
 <div align="center">
     <a href="http://cuboxlabs.com">
