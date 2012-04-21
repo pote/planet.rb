@@ -123,9 +123,9 @@ You don't really need an explanation if you are using Jekyll, just initialize an
 
 # In The wild
 
-planet.rb is used in the following websites (that I know of)
+## planet.rb is used in the following websites (that I know of)
 
-* blog.cuboxlabs.com          # => Where it coexists with Cubox's own posts, it has at the time of this writing about double the content it would have without planet.rb :)
+* [blog.cuboxlabs.com](http://blog.cuboxlabs.com) - Where it coexists with Cubox's own posts, it has at the time of this writing about double the content it would have without planet.rb :)
 
 
 # Sponsorship
