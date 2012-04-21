@@ -13,7 +13,7 @@ desc 'Parses planet.yml file for blogs and generates their posts in Jekyll compl
 command :generate do |c|
 
   c.action do |global_options,options,args|
-    conf = YAML.load File.open('planet.yml', 'r').read
+    conf = YAML.load_file('planet.yml')
 
     @planet = Planet.new(config: conf.fetch('planet', {}))
 
@@ -38,7 +38,7 @@ end
 desc 'Creates basic planet.yml config file'
 command :init do |c|
   c.action do |global_options,options,args|
-    raise Exception.new('There is already a planet.yml file present') if File.exist? 'planet.yml'
+    abort 'There is already a planet.yml file present' if File.exist? 'planet.yml'
 
     File.open('planet.yml', 'w') { |f| f.write(Box::FILES['planet.yml']) }
 
