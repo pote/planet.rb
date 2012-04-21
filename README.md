@@ -40,7 +40,7 @@ Installing ri documentation for planet-0.2.4...
 Installing RDoc documentation for planet-0.2.4...
 ```
 
-Were we will create a sample planet.yml config file
+Create a sample planet.yml config file
 
 ```shell
 ▸ planet init
