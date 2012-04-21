@@ -115,7 +115,7 @@ So this is pretty sweet: planet.rb doesn't really want to inject html and random
    {{ twitter_url }}            # => "http://twitter.com/poteland"
 ```
 
-So feel free to customize planet.rb layouts any way you see fit (but please don't take away the author.html files! You should definitely give credit to the author of hte post)
+So feel free to customize planet.rb layouts any way you see fit (but please don't take away the author.html file! You should definitely give credit to the author of hte post)
 
 ### A quick note about Jekyll
 
