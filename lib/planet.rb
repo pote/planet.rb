@@ -20,9 +20,8 @@ class Planet < Struct.new(:config, :blogs)
       blog.name ||= feed.title || 'the source'
       blog.url ||= feed.url
 
-      ## This is slightly gay.
       if blog.url.nil?
-        raise "#{ blog.author }'s blog does not have a url field on it's feed, you will need to specify it on planet.yml"
+        abort "#{ blog.author }'s blog does not have a url field on it's feed, you will need to specify it on planet.yml"
       end
 
       feed.entries.each do |entry|
