@@ -112,7 +112,7 @@ class Planet < Struct.new(:config, :blogs)
       self.author = attributes[:author]
       self.image = attributes[:image]
       self.twitter = attributes[:twitter]
-      self.posts = attributes.fetch('posts', [])
+      self.posts = attributes.fetch(:posts, [])
       self.planet = attributes[:planet]
     end
 
