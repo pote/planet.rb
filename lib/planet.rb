@@ -15,31 +15,12 @@ class Planet < Struct.new(:config, :blogs)
   def aggregate
     self.blogs.each do |blog|
       puts "=> Parsing #{ blog.feed }"
-      feed = Feedzirra::Feed.fetch_and_parse(blog.feed)
-
-      blog.name ||= feed.title || 'the source'
-      blog.url ||= feed.url
-
-      if blog.url.nil?
-        abort "#{ blog.author }'s blog does not have a url field on it's feed, you will need to specify it on planet.yml"
-      end
-
-      feed.entries.each do |entry|
-        blog.posts << @post = Post.new(
-          title: entry.title.sanitize,
-          content: blog.sanitize_images(entry.content.strip),
-          date: entry.published,
-          url: blog.url + entry.url,
-          blog: blog
-        )
-
-        puts "=> Found post titled #{ @post.title } - by #{ @post.blog.author }"
-      end
+      blog.fetch
     end
   end
 
   def write_posts
-    posts_dir = self.config.fetch('posts_directory', '_posts')
+    posts_dir = self.config.fetch('posts_directory', 'source/_posts/')
     FileUtils.mkdir_p(posts_dir)
     puts "=> Writing #{ self.posts.size } posts to the #{ posts_dir } directory"
 
@@ -114,6 +95,29 @@ class Planet < Struct.new(:config, :blogs)
       self.twitter = attributes[:twitter]
       self.posts = attributes.fetch(:posts, [])
       self.planet = attributes[:planet]
+    end
+
+    def fetch
+      feed = Feedzirra::Feed.fetch_and_parse(self.feed)
+
+      self.name ||= feed.title || 'the source'
+      self..url ||= feed.url
+
+      if self.url.nil?
+        abort "#{ self.author }'s blog does not have a url field on it's feed, you will need to specify it on planet.yml"
+      end
+
+      feed.entries.each do |entry|
+        self.posts << @post = Post.new(
+          title: entry.title.sanitize,
+          content: self.sanitize_images(entry.content.strip),
+          date: entry.published,
+          url: self.url + entry.url,
+          blog: self
+        )
+
+        puts "=> Found post titled #{ @post.title } - by #{ @post.blog.author }"
+      end
     end
 
     def sanitize_images(html)
