@@ -28,8 +28,8 @@ class Planet < Struct.new(:config, :blogs)
       feed.entries.each do |entry|
         blog.posts << @post = Post.new(
           title: entry.title.sanitize,
-          content: entry.content.strip.gsub('<img src="', "<img src=\"#{ blog.url }"),    ## => I don't like this that much, move it away
-          date: entry.published,                                                          ##    and check that it's needed post by post.
+          content: blog.sanitize_images(entry.content.strip),
+          date: entry.published,
           url: blog.url + entry.url,
           blog: blog
         )
@@ -61,6 +61,10 @@ class Planet < Struct.new(:config, :blogs)
       self.blog = attributes.fetch(:blog, nil)
     end
 
+    def to_s
+      "#{ header }#{ content }#{ footer }"
+    end
+
     def to_hash
       {
         post_content: self.content,
@@ -84,13 +88,6 @@ class Planet < Struct.new(:config, :blogs)
       Mustache.render(file_contents, self.to_hash)
     end
 
-    def file_name
-      name_date = date ? date.strftime('%Y-%m-%d') : nil
-      name_title = title.downcase.scan(/\w+/).join('-')
-
-      [name_date, name_title].join('-')
-    end
-
     def footer
       file = self.blog.planet.config.fetch('templates_directory', '_layouts/') + 'author.html'
       file_contents = File.open(file, 'r') { |f| f.read }
@@ -98,9 +95,13 @@ class Planet < Struct.new(:config, :blogs)
       Mustache.render(file_contents, self.to_hash)
     end
 
-    def to_s
-      "#{ header }#{ content }#{ footer }"
+    def file_name
+      name_date = date ? date.strftime('%Y-%m-%d') : nil
+      name_title = title.downcase.scan(/\w+/).join('-')
+
+      [name_date, name_title].join('-')
     end
+
   end
 
   class Blog < Struct.new(:url, :feed, :name, :author, :image, :twitter, :posts, :planet)
@@ -114,6 +115,20 @@ class Planet < Struct.new(:config, :blogs)
       self.twitter = attributes[:twitter]
       self.posts = attributes.fetch('posts', [])
       self.planet = attributes[:planet]
+    end
+
+    def sanitize_images(html)
+      ## We take all images with src not matching http refs and append
+      ## the original blog to them.
+      html.scan(/<img src="([^h"]+)"/).flatten.each do |img|
+        if img[0] == '/'
+          html.gsub!(img, "#{ self.url }#{ img }")
+        else
+          html.gsub!(img, "#{ self.url }/#{ img }")
+        end
+      end
+
+      html
     end
   end
 end
