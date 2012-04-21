@@ -78,9 +78,9 @@ pre do |global,command,options,args|
     templates_dir = conf.fetch('planet').fetch('templates_directory', 'source/_layouts/')
     FileUtils.mkdir_p(templates_dir)
 
-    FILES = [templates_dir, templates_dir + 'author.html', templates_dir + 'header.md']
+    files = [templates_dir, templates_dir + 'author.html', templates_dir + 'header.md']
 
-    FILES.each do |file|
+    files.each do |file|
       unless File.exists?(file)
         puts "=> You are missing some files in your templates directory, planet.rb will create them for you - make sure to review them on #{ templates_dir }!"
         response = `planet create_templates`
