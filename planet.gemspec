@@ -21,4 +21,5 @@ lib/planet.rb
   s.add_runtime_dependency('gli')
   s.add_runtime_dependency('feedzirra')
   s.add_runtime_dependency('mustache')
+  s.add_runtime_dependency('box')
 end

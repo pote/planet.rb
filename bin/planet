@@ -3,27 +3,11 @@
 $: << File.expand_path(File.dirname(File.realpath(__FILE__)) + '/../lib')
 require 'rubygems'
 require 'gli'
+require 'box'
 require 'planet'
 
 include GLI
-
-## We do this stuff to get templates for free defined at the very bottom of this file.
-
-templates = {}
-
-DATA.read.split(/^@@ /).each do |chunk|
-  if chunk != ""
-    file_name = chunk.match(/(\A\w+.\w+)/)[0]
-    file_content = chunk.split(/\A\w+.\w+\n/)[1]
-
-    templates[file_name] = file_content
-  end
-end
-
-TEMPLATES = templates
-
-## End of shady stuff.
-
+include Box
 
 program_desc 'Planet.rb is an awesome feed-aggregator gem that consumes RSS/Atom feeds and outputs them in a format suitable to use with Octopress or Jekyll'
 
@@ -58,7 +42,7 @@ command :init do |c|
   c.action do |global_options,options,args|
     raise Exception.new('There is already a planet.yml file present') if File.exist? 'planet.yml'
 
-    File.open('planet.yml', 'w') { |f| f.write(TEMPLATES['planet.yml']) }
+    File.open('planet.yml', 'w') { |f| f.write(Box::FILES['planet.yml']) }
 
     puts '=> Created default planet.yml'
   end
@@ -74,14 +58,14 @@ command :create_templates do |c|
     FileUtils.mkdir_p(templates_dir)
 
     if !File.exists?(templates_dir + 'author.html')
-      File.open(templates_dir + 'author.html', 'w') { |f| f.write(TEMPLATES['author.html']) }
+      File.open(templates_dir + 'author.html', 'w') { |f| f.write(Box::FILES['author.html']) }
       puts "=> Created default #{ templates_dir }author.html"
     else
       puts "=> Template #{ templates_dir }author.html already exists, skipping"
     end
 
     if !File.exists?(templates_dir + 'header.md')
-      File.open(templates_dir + 'header.md', 'w') { |f| f.write(TEMPLATES['header.md']) }
+      File.open(templates_dir + 'header.md', 'w') { |f| f.write(Box::FILES['header.md']) }
       puts "=> Created default #{ templates_dir }header.md"
     else
       puts "=> Template #{ templates_dir }header.md already exists, skipping"
