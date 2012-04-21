@@ -128,15 +128,6 @@ planet.rb is used in the following website (that I know of)
 * blog.cuboxlabs.com          # => Where it coexists with Cubox's own posts, it has at the time of this writing about double the content it would have without planet.rb :)
 
 
-## TODO:
+# Sponsorship
 
-* Handle upgrade of planet template files on gem update
-* Contemplate nested planets - images, particularly.
-* Write blog post on "Importing your blog to octopress with planet.rb"
-* Find out why http://microformatique.com/optimus/?uri=http://mcdlr.com/&format=rss doesnt work
-* Get images from twitter if provided, or in some other magical way.
-* Handle images that are not aligned correctly?
-* Create "Participating blogs" template for the sidebar
-* Support blog author being taken out directly from the feed so it's not required on planet.yml (move author to Post class?)
-* Handle categories/tags?
-* Find an alternative to Feedzirra that doesnt install a million dependencies.
+This project is sponsored by the amazing people at [Cubox](http://cuboxlabs.com) that make it possible for me to work on this without dying of starvation, BIG THANKS to them! (oh, and their [blog](http://blog.cuboxlabs.com] uses planet.rb, too! ;) )
