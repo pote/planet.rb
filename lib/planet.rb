@@ -102,7 +102,7 @@ class Planet
         blog_name: self.blog.name,
         post_url: self.url,
         twitter: self.blog.twitter,
-        twitter_uri: "http://twitter.com/#{ self.blog.twitter }"
+        twitter_url: "http://twitter.com/#{ self.blog.twitter }"
       }
     end
 
