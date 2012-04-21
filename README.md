@@ -130,9 +130,9 @@ planet.rb is used in the following website (that I know of)
 
 ## TODO:
 
-* Contemplate nested planets - images, particularly.
 * Handle upgrade of planet template files on gem update
-* Create complete templates and posts directory tree if necessary
+* Contemplate nested planets - images, particularly.
+* Create complete templates and posts directory tree if necessary (makedir_p)
 * Write blog post on "Importing your blog to octopress with planet.rb"
 * Find out why http://microformatique.com/optimus/?uri=http://mcdlr.com/&format=rss doesnt work
 * Get images from twitter if provided, or in some other magical way.
