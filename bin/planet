@@ -83,7 +83,7 @@ pre do |global,command,options,args|
     files.each do |file|
       unless File.exists?(file)
         puts "=> You are missing some files in your templates directory, planet.rb will create them for you - make sure to review them on #{ templates_dir }!"
-        response = `planet create_templates`
+        response = `#{$0} create_templates`
         puts response
       end
     end
