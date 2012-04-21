@@ -117,10 +117,6 @@ So this is pretty sweet: planet.rb doesn't really want to inject html and random
 
 So feel free to customize planet.rb layouts any way you see fit (but please don't take away the author.html file! You should definitely give credit to the author of hte post)
 
-### A quick note about Jekyll
-
-You don't really need an explanation if you are using Jekyll, just initialize and generate the planet whenever you have your _posts directory and you'll be good to go :)
-
 # In The wild
 
 ## planet.rb is used in the following websites (that I know of)
