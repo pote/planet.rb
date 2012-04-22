@@ -78,7 +78,7 @@ pre do |global,command,options,args|
     templates_dir = conf.fetch('planet').fetch('templates_directory', 'source/_layouts/')
     FileUtils.mkdir_p(templates_dir)
 
-    files = [templates_dir, templates_dir + 'author.html', templates_dir + 'header.md']
+    files = [templates_dir + 'author.html', templates_dir + 'header.md']
 
     files.each do |file|
       unless File.exists?(file)
