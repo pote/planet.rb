@@ -41,7 +41,7 @@ class Planet
       self.title = attributes[:title]
       self.content = attributes[:content]
       self.date = attributes[:date]
-      self.url = attributes.[:url]
+      self.url = attributes[:url]
       self.blog = attributes[:blog]
       self.author = attributes[:author]
     end
