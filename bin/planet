@@ -49,7 +49,7 @@ end
 desc 'Creates basic templates on the templates_directory specified in planet.yml'
 command :create_templates do |c|
   c.action do |global_options,options,args|
-    conf = YAML.load File.open('planet.yml', 'r') { |f| f.read }
+    conf = YAML.load_file('planet.yml')
 
     templates_dir = conf.fetch('planet').fetch('templates_directory', 'source/_layouts/')
 
