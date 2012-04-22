@@ -107,7 +107,7 @@ class Planet
       feed = Feedzirra::Feed.fetch_and_parse(self.feed)
 
       self.name ||= feed.title || 'the source'
-      self..url ||= feed.url
+      self.url ||= feed.url
 
       if self.url.nil?
         abort "#{ self.author }'s blog does not have a url field on it's feed, you will need to specify it on planet.yml"
