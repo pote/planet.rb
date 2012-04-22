@@ -35,14 +35,15 @@ class Planet
 
   class Post
 
-    attr_accessor :title, :content, :date, :url, :blog
+    attr_accessor :title, :content, :date, :url, :blog, :author
 
     def initialize(attributes = {})
-      self.title = attributes.fetch(:title, nil)
-      self.content = attributes.fetch(:content, nil)
-      self.date = attributes.fetch(:date, nil)
-      self.url = attributes.fetch(:url, nil)
-      self.blog = attributes.fetch(:blog, nil)
+      self.title = attributes[:title]
+      self.content = attributes[:content]
+      self.date = attributes[:date]
+      self.url = attributes.[:url]
+      self.blog = attributes[:blog]
+      self.author = attributes[:author]
     end
 
     def to_s
@@ -55,7 +56,7 @@ class Planet
         post_title: self.title,
         post_date: self.date,
         image_url: self.blog.image,
-        author: self.blog.author,
+        author: self.author,
         blog_url: self.blog.url,
         blog_name: self.blog.name,
         post_url: self.url,
@@ -107,7 +108,7 @@ class Planet
       feed = Feedzirra::Feed.fetch_and_parse(self.feed)
 
       self.name ||= feed.title || 'the source'
-      self..url ||= feed.url
+      self.url ||= feed.url
 
       if self.url.nil?
         abort "#{ self.author }'s blog does not have a url field on it's feed, you will need to specify it on planet.yml"
@@ -116,13 +117,14 @@ class Planet
       feed.entries.each do |entry|
         self.posts << @post = Post.new(
           title: entry.title.sanitize,
+          author: entry.author ? entry.author : self.author,
           content: self.sanitize_images(entry.content.strip),
           date: entry.published,
           url: self.url + entry.url,
           blog: self
         )
 
-        puts "=> Found post titled #{ @post.title } - by #{ @post.blog.author }"
+        puts "=> Found post titled #{ @post.title } - by #{ @post.author }"
       end
     end
 
