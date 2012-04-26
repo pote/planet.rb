@@ -131,6 +131,11 @@ So feel free to customize planet.rb layouts any way you see fit (but please don'
 * [blog.cuboxlabs.com](http://blog.cuboxlabs.com) - Where it coexists with Cubox's own posts, it has at the time of this writing about double the content it would have without planet.rb :)
 
 
+## Migrate your blog to Octopress using planet.rb!
+
+I've written a brief [blog post](http://blog.poteland.com/blog/2012/04/20/migrate-your-blog-to-octopress-using-planet-dot-rb/) about how to do this. Works like a charm :).
+
+
 # Sponsorship
 
 This project is sponsored by the amazing people at [Cubox](http://cuboxlabs.com) that make it possible for me to work on this without dying of starvation, BIG THANKS to them! (oh, and their [blog](http://blog.cuboxlabs.com) uses planet.rb, too! ;) )
