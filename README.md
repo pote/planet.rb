@@ -11,6 +11,13 @@ This gem is also **[gloriously untested](http://jamiesharpe.info/image/comics/ha
 An awesome RSS/Atom feed aggregator designed with [Octopress](http://octopress.org/)/[Jekyll](http://jekyllrb.com/) in mind, it will parse a given
 list of blogs and output them in a format suitable for usage with these amazing blogging engines.
 
+## Why?
+
+* Most companies want a nice company blog with interesting stuff on it.
+* Most coders will prefer to write on their own blogs, nobody wants to write interesting stuff on their company blog when they could write it on their own.
+* planet.rb bridges that gap, your coders/designers/whatever can write on their own blogs, the company can have that content (with proper credits for the author, links to their blog and twitter).
+* Everybody wins with minimum effort! Just set up an octopress blog, a cron job to regenerate it and you are done, the company has a stream of interesting content to show.
+
 ## Main Features
 
 * Parse blogs, save posts as plain text files, ready to use with Octopress/Jekyll.
