@@ -125,9 +125,14 @@ class Planet
                     abort "=> No content found on entry"
                   end
 
+        title = if !entry.title.nil?
+                  entry.title.sanitize
+                else
+                  self.name
+                end
 
         self.posts << @post = Post.new(
-          title: entry.title.sanitize,
+          title: title,
           content: content,
           date: entry.published,
           url: self.url + entry.url,
