@@ -114,9 +114,21 @@ class Planet
       end
 
       feed.entries.each do |entry|
+        ## TODO: I should probably consider using feed 'adapters' for specific
+        ## blog engine feeds that don't have their stuff on the standard fields.
+        ## Example: blogspot has the content on "summary" instead of content ¬¬.
+        content = if !entry.content.nil?
+                    self.sanitize_images(entry.content.strip)
+                  elsif !entry.summary.nil?
+                    self.sanitize_images(entry.summary.strip)
+                  else
+                    abort "=> No content found on entry"
+                  end
+
+
         self.posts << @post = Post.new(
           title: entry.title.sanitize,
-          content: self.sanitize_images(entry.content.strip),
+          content: content,
           date: entry.published,
           url: self.url + entry.url,
           blog: self
