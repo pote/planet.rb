@@ -1,4 +1,4 @@
-module Planet
+class Planet
   module Version
     MAJOR = 0
     MINOR = 3
