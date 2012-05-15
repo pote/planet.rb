@@ -1,14 +1,15 @@
-require 'feedzirra'
 require 'planet/post'
+require 'planet/parsers'
 
 class Planet
   class Blog
 
-    attr_accessor :url, :feed, :name, :author, :image, :twitter, :posts, :planet
+    attr_accessor :url, :feed, :type, :name, :author, :image, :twitter, :posts, :planet
 
     def initialize(attributes = {})
       self.url = attributes[:url]
       self.feed = attributes[:feed]
+      self.type = attributes[:type]
       self.name = attributes[:name]
       self.author = attributes[:author]
       self.image = attributes[:image]
@@ -18,7 +19,9 @@ class Planet
     end
 
     def fetch
-      feed = Feedzirra::Feed.fetch_and_parse(self.feed)
+      parser = self.type ? Parsers.get_parser(self.type) : Parsers.get_parser_for(self.feed)
+
+      feed = parser.fetch_and_parse(self.feed)
 
       self.name ||= feed.title || 'the source'
       self.url ||= feed.url
@@ -28,9 +31,6 @@ class Planet
       end
 
       feed.entries.each do |entry|
-        ## TODO: I should probably consider using feed 'adapters' for specific
-        ## blog engine feeds that don't have their stuff on the standard fields.
-        ## Example: blogspot has the content on "summary" instead of content ¬¬.
         content = if !entry.content.nil?
                     self.sanitize_images(entry.content.strip)
                   elsif !entry.summary.nil?
