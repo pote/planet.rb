@@ -7,7 +7,17 @@ class Planet
 
   def initialize(attributes = {})
     self.config = attributes[:config]
-    self.blogs = attributes.fetch(:blogs, [])
+    self.blogs  = attributes.fetch(:blogs, []).map do |blog|
+      Blog.new(
+        feed:    blog['feed'],
+        url:     blog['url'],
+        author:  blog['author'],
+        image:   blog['image'],
+        posts:   [],
+        planet:  self,
+        twitter: blog['twitter']
+      )
+    end
   end
 
   def posts
