@@ -1,5 +1,6 @@
 require 'feedzirra'
 require 'mustache'
+require 'planet/version'
 
 class Planet
 
