@@ -16,10 +16,12 @@ class Planet
       self.twitter = attributes[:twitter]
       self.posts = attributes.fetch(:posts, [])
       self.planet = attributes[:planet]
+
+      @parsers = Parsers.new
     end
 
     def fetch
-      parser = self.type ? Parsers.get_parser(self.type) : Parsers.get_parser_for(self.feed)
+      parser = self.type ? @parsers.get_parser(self.type) : @parsers.get_parser_for(self.feed)
 
       feed = parser.fetch_and_parse(self.feed)
 
