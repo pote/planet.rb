@@ -1,5 +1,8 @@
 class Planet
   class Parsers
+    # base class for feed parsers
+    # subclasses should declare @type and @domains
+    # and also mimick Feedzirra interface.
     class BaseParser
       def self.type
         @type

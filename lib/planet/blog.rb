@@ -17,12 +17,15 @@ class Planet
       self.posts = attributes.fetch(:posts, [])
       self.planet = attributes[:planet]
 
+      # get parser-manager instance
       @parsers = Parsers.new
     end
 
     def fetch
+      # given parser can be set arbitrarily with :type or inferred from the domain
       parser = self.type ? @parsers.get_parser(self.type) : @parsers.get_parser_for(self.feed)
 
+      # parser instances should mimick Feedzirra interface
       feed = parser.fetch_and_parse(self.feed)
 
       self.name ||= feed.title || 'the source'

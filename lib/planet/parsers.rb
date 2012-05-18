@@ -2,6 +2,11 @@ require 'feedzirra'
 require 'set'
 
 class Planet
+  # Parsers class - manager for the feed parsers
+  #
+  # parser classes inherit from Planet::Parsers::BaseParser
+  # and are added automatically to the list of available parsers.
+  # files located on planet/parsers are automatically loaded.
   class Parsers
     @@parsers = Set.new
 
@@ -9,6 +14,10 @@ class Planet
       @@parsers << parser
     end
 
+    # Parser instances keep indexes of the available parsers and
+    # check for duplicate definitions (need to use an instance
+    # because #inherited gets called as soon as the class is seen
+    # but before it is fully defined).
     def initialize
       @types, @domains = {}, {}
 
@@ -25,6 +34,7 @@ class Planet
       end
     end
 
+    # returns the appropiate parser based on the type
     def get_parser(type)
       begin
         return @types.fetch(type)
@@ -33,6 +43,8 @@ class Planet
       end
     end
 
+    # returns any parser that can handle this feeds' domain,
+    # defaults to Feedzirra if none available.
     def get_parser_for(feed)
       feed_domain = URI(feed).host
 
