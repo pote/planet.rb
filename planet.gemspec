@@ -8,11 +8,7 @@ spec = Gem::Specification.new do |s|
   s.homepage = 'http://poteland.com'
   s.platform = Gem::Platform::RUBY
   s.summary = 'An awesome rss/atom feed aggregator designed to work with Octopress/Jekyll'
-  s.files = %w(
-bin/planet
-lib/planet/version.rb
-lib/planet.rb
-  )
+  s.files = Dir['bin/*'] + Dir['lib/**/*.rb']
   s.require_paths << 'lib'
   s.has_rdoc = false
   s.bindir = 'bin'
