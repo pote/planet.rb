@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
 
+#import runtime dependecies from gemspec
 gemspec
-gem 'rake'
-gem 'simple-rss'
+
+#list developement deps here
