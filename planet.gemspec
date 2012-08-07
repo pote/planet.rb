@@ -13,7 +13,6 @@ spec = Gem::Specification.new do |s|
   s.has_rdoc = false
   s.bindir = 'bin'
   s.executables << 'planet'
-  s.add_development_dependency('rake')
   s.add_runtime_dependency('gli')
   s.add_runtime_dependency('feedzirra')
   s.add_runtime_dependency('mustache')
