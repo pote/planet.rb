@@ -1,23 +1,16 @@
+require 'yaml'
 require 'planet/version'
 require 'planet/blog'
+require 'planet/importer'
 
 class Planet
 
   attr_accessor :config, :blogs
 
-  def initialize(attributes = {})
-    self.config = attributes[:config]
-    self.blogs  = attributes.fetch(:blogs, []).map do |blog|
-      Blog.new(
-        feed:    blog['feed'],
-        url:     blog['url'],
-        author:  blog['author'],
-        image:   blog['image'],
-        posts:   [],
-        planet:  self,
-        twitter: blog['twitter']
-      )
-    end
+  def initialize(config_file_path)
+    config_file = read_config_file(config_file_path)
+    self.config = config_file[:planet]
+    self.blogs  = config_file[:blogs]
   end
 
   def posts
@@ -32,14 +25,25 @@ class Planet
   end
 
   def write_posts
-    posts_dir = self.config.fetch('posts_directory', 'source/_posts/')
-    FileUtils.mkdir_p(posts_dir)
-    puts "=> Writing #{ self.posts.size } posts to the #{ posts_dir } directory."
+    PostImporter.import(self)
+  end
 
-    self.posts.each do |post|
-      file_name = posts_dir + post.file_name
+  private
 
-      File.open(file_name + '.markdown', "w+") { |f| f.write(post.to_s) }
+  def read_config_file(config_file_path)
+    config = YAML.load_file(config_file_path)
+    planet = config.fetch('planet', {})
+    blogs = config.fetch('blogs', []).map do |blog|
+      Blog.new(
+        feed:    blog['feed'],
+        url:     blog['url'],
+        author:  blog['author'],
+        image:   blog['image'],
+        posts:   [],
+        planet:  self,
+        twitter: blog['twitter']
+      )
     end
+    { planet: planet, blogs: blogs }
   end
 end
