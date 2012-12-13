@@ -63,12 +63,8 @@ command :generate do |c|
     # the way the posts are imported.
     # Use on your own risk.
     unless args[0].blank?
-      unless File.exist? args[0]
-        abort "The file you specified does not exist: #{args[0]}"
-      else
-        require args[0]
-        puts '=> ** NOTICE **: Running custom PostImporter'
-      end
+      require args[0]
+      puts '=> ** NOTICE **: Running custom PostImporter'
     else
       puts '=> Running default PostImporter'
     end
