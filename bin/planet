@@ -2,8 +2,9 @@
 
 require 'gli'
 require 'planet'
+require 'fileutils'
 
-include GLI
+include GLI::App
 
 TEMPLATES = {
   author:  '
@@ -147,4 +148,4 @@ on_error do |exception|
   true
 end
 
-exit GLI.run(ARGV)
+exit run(ARGV)
