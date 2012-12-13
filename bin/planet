@@ -2,6 +2,7 @@
 
 require 'gli'
 require 'planet'
+require 'fileutils'
 
 include GLI::App
 
