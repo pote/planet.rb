@@ -1,5 +1,6 @@
 require 'planet/version'
 require 'planet/blog'
+require 'planet/importer'
 
 class Planet
 
@@ -32,14 +33,6 @@ class Planet
   end
 
   def write_posts
-    posts_dir = self.config.fetch('posts_directory', 'source/_posts/')
-    FileUtils.mkdir_p(posts_dir)
-    puts "=> Writing #{ self.posts.size } posts to the #{ posts_dir } directory."
-
-    self.posts.each do |post|
-      file_name = posts_dir + post.file_name
-
-      File.open(file_name + '.markdown', "w+") { |f| f.write(post.to_s) }
-    end
+    PostImporter.import(self)
   end
 end

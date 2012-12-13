@@ -58,6 +58,21 @@ command :generate do |c|
 
     @planet.aggregate
 
+    # Take the first argument as the path
+    # for a ruby file in order to change
+    # the way the posts are imported.
+    # Use on your own risk.
+    unless args[0].blank?
+      unless File.exist? args[0]
+        abort "The file you specified does not exist: #{args[0]}"
+      else
+        require args[0]
+        puts '=> ** NOTICE **: Running custom PostImporter'
+      end
+    else
+      puts '=> Running default PostImporter'
+    end
+
     @planet.write_posts
   end
 end
