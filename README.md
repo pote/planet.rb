@@ -30,7 +30,7 @@ list of blogs and output them in a format suitable for usage with these amazing 
 So let's assume we have an [Octopress](http://octopress.org) blog. If you are not familiar with Octopress/Jekyll I suggest to check out its [documentation](http://octopress.org/docs/) before going any further.
 
 
-```shell
+```bash
 ▸ ls
 CHANGELOG.markdown README.markdown    config.rb          public
 Gemfile            Rakefile           config.ru          sass
@@ -39,7 +39,7 @@ Gemfile.lock       _config.yml        plugins            source
 
 Install the planet.rb gem
 
-```shell
+```bash
 ▸ gem install planet
 Successfully installed planet-0.2.4
 1 gem installed
@@ -49,14 +49,14 @@ Installing RDoc documentation for planet-0.2.4...
 
 Create a sample planet.yml config file
 
-```shell
+```bash
 ▸ planet init
 => Created default planet.yml
 ```
 
 You will most likely want to edit this yml file (unless you reallly really like me and [Cubox](http://cuboxlabs.com)!), after you are done, run the generate command.
 
-```shell
+```bash
 ▸ planet generate
 => You are missing some files in your templates directory, planet.rb will create them for you - make sure to review them on source/_layouts/!
 => Created default source/_layouts/author.html
