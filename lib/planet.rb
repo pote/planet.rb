@@ -25,7 +25,7 @@ class Planet
   end
 
   def write_posts
-    PostImporter.import(self)
+    Importer.import(self)
   end
 
   private
@@ -44,6 +44,7 @@ class Planet
         twitter: blog['twitter']
       )
     end
+
     { planet: planet, blogs: blogs }
   end
 end

@@ -36,22 +36,16 @@ class Planet
       end
 
       feed.entries.each do |entry|
-        content = if !entry.content.nil?
+        content = if entry.content
                     self.sanitize_images(entry.content.strip)
-                  elsif !entry.summary.nil?
+                  elsif entry.summary
                     self.sanitize_images(entry.summary.strip)
                   else
                     abort "=> No content found on entry"
                   end
 
-        title = if !entry.title.nil?
-                  entry.title.sanitize
-                else
-                  self.name
-                end
-
         self.posts << @post = Post.new(
-          title: title,
+          title: entry.title.nil? ? self.name : entry.title,
           content: content,
           date: entry.published,
           url: self.url + entry.url,
