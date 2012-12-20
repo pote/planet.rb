@@ -23,10 +23,6 @@ class Planet
     end
   end
 
-  def write_posts
-    PostImporter.import(self)
-  end
-
   def self.import(config)
     planet = Planet.new(config)
     planet.aggregate
