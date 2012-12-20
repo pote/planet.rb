@@ -1,7 +1,6 @@
 require 'yaml'
 require 'planet/version'
 require 'planet/blog'
-require 'planet/importer'
 
 class Planet
 
@@ -28,6 +27,12 @@ class Planet
     PostImporter.import(self)
   end
 
+  def self.import(config)
+    planet = Planet.new(config)
+    planet.aggregate
+    yield(planet)
+  end
+
   private
 
   def read_config_file(config_file_path)
@@ -46,4 +51,5 @@ class Planet
     end
     { planet: planet, blogs: blogs }
   end
+
 end
