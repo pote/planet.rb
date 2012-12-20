@@ -34,15 +34,7 @@ class Planet
     config = YAML.load_file(config_file_path)
     planet = config.fetch('planet', {})
     blogs = config.fetch('blogs', []).map do |blog|
-      Blog.new(
-        feed:    blog['feed'],
-        url:     blog['url'],
-        author:  blog['author'],
-        image:   blog['image'],
-        posts:   [],
-        planet:  self,
-        twitter: blog['twitter']
-      )
+      Blog.new(blog, self)
     end
     { planet: planet, blogs: blogs }
   end
