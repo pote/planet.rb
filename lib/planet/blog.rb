@@ -4,18 +4,19 @@ require 'planet/parsers'
 class Planet
   class Blog
 
-    attr_accessor :url, :feed, :type, :name, :author, :image, :twitter, :posts, :planet
+    attr_accessor :url, :feed, :type, :name, :author, :image, :twitter, :posts, :planet, :category
 
     def initialize(attributes = {})
-      self.url = attributes[:url]
-      self.feed = attributes[:feed]
-      self.type = attributes[:type]
-      self.name = attributes[:name]
-      self.author = attributes[:author]
-      self.image = attributes[:image]
-      self.twitter = attributes[:twitter]
-      self.posts = attributes.fetch(:posts, [])
-      self.planet = attributes[:planet]
+      self.url      = attributes[:url]
+      self.feed     = attributes[:feed]
+      self.type     = attributes[:type]
+      self.name     = attributes[:name]
+      self.author   = attributes[:author]
+      self.image    = attributes[:image]
+      self.twitter  = attributes[:twitter]
+      self.posts    = attributes.fetch(:posts, [])
+      self.planet   = attributes[:planet]
+      self.category = attributes.fetch(:category, '')
 
       # get parser-manager instance
       @parsers = Parsers.new

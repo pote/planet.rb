@@ -40,13 +40,14 @@ class Planet
     planet = config.fetch('planet', {})
     blogs = config.fetch('blogs', []).map do |blog|
       Blog.new(
-        feed:    blog['feed'],
-        url:     blog['url'],
-        author:  blog['author'],
-        image:   blog['image'],
-        posts:   [],
-        planet:  self,
-        twitter: blog['twitter']
+        feed:     blog['feed'],
+        url:      blog['url'],
+        author:   blog['author'],
+        image:    blog['image'],
+        twitter:  blog['twitter'],
+        category: blog['category'],
+        posts:    [],
+        planet:   self,
       )
     end
     { planet: planet, blogs: blogs }
