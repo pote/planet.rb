@@ -2,7 +2,7 @@
 
 ## Important!
 
-POTE HOLA!!!
+POTE ES EL REY
 
 This IS a work in progress, although most functionality is already implemented, do not expect much stability, and of course patches are appreciated. :)
 
