@@ -2,6 +2,8 @@
 
 ## Important!
 
+POTE HOLA!!!
+
 This IS a work in progress, although most functionality is already implemented, do not expect much stability, and of course patches are appreciated. :)
 
 This gem is also **[gloriously untested](http://jamiesharpe.info/image/comics/haters/haters_gonna_hate3.jpg)** so I will assume that each time we use it a TDD enthusiast's head explodes. I expect, of course, to add some testing later, but for now I'd rather focus on functionality.
