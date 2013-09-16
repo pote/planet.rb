@@ -125,12 +125,6 @@ So this is pretty sweet: planet.rb doesn't really want to inject html and random
 
 So feel free to customize planet.rb layouts any way you see fit (but please don't take away the author.html file! You should definitely give credit to the author of hte post)
 
-# In The wild
-
-## planet.rb is used in the following websites (that I know of)
-
-* [blog.cuboxlabs.com](http://blog.cuboxlabs.com) - Where it coexists with Cubox's own posts, it has at the time of this writing about double the content it would have without planet.rb :)
-
 
 ## Migrate your blog to Octopress using planet.rb!
 
@@ -140,14 +134,3 @@ I've written a brief [blog post](http://blog.poteland.com/blog/2012/04/20/migrat
 ## Contributors
 
 * [Samus_](https://github.com/git2samus) - His work on planet.rb is being sponsored by [Globant](http://www.globant.com/)
-
-
-# Sponsorship
-
-This project is sponsored by the amazing people at [Cubox](http://cuboxlabs.com) that make it possible for me to work on this without dying of starvation, BIG THANKS to them! (oh, and their [blog](http://blog.cuboxlabs.com) uses planet.rb, too! ;) )
-
-<div align="center">
-    <a href="http://cuboxlabs.com">
-        <img src="http://poteland.com/images/cubox-logo-web-transparent.png" alt="Available for Awesomeness"/>
-    </a>
-</div>
