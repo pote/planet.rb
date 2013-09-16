@@ -5,12 +5,13 @@ require 'planet/importer'
 
 class Planet
 
-  attr_accessor :config, :blogs
+  attr_accessor :config, :blogs, :whitelisted_tags
 
   def initialize(config_file_path)
     config_file = read_config_file(config_file_path)
     self.config = config_file[:planet]
     self.blogs  = config_file[:blogs]
+    self.whitelisted_tags  = self.config['whitelisted_tags']
   end
 
   def posts

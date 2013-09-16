@@ -36,6 +36,7 @@ class Planet
       end
 
       feed.entries.each do |entry|
+        next unless whitelisted?(entry)
         content = if entry.content
                     self.sanitize_images(entry.content.strip)
                   elsif entry.summary
@@ -68,6 +69,13 @@ class Planet
       end
 
       html
+    end
+
+    def whitelisted?(entry)
+      return true if self.planet.whitelisted_tags.empty?
+      result = !(entry.categories & self.planet.whitelisted_tags).empty?
+      puts "\t=> Ignored post titled: #{entry.title} with categories: [#{entry.categories.join(', ')}]" unless result
+      result
     end
   end
 end
