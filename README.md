@@ -89,7 +89,8 @@ The planet.yml file contains the basic config options for planet. It consists of
 ```yaml
 planet:
     posts_directory: source/_posts/                 # => Posts text files will be written into this directory
-    templates_directory: source/_layouts/           # => Planet specific layouts will be saved here, I suggest that it matches your Octopress/Jekyll layout directory.
+    templates_directory: source/_layouts/       # => Planet specific layouts will be saved here, I suggest that it matches your Octopress/Jekyll layout directory.
+    whitelisted_tags: []                                   # => Only posts that are tagged with any of these tags will be imported
 
 blogs:
   - author: "Cubox"                                 # => Name that we will use as the author of this post (soon you wont have to specify this :)
