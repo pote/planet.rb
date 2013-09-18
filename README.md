@@ -125,6 +125,12 @@ So this is pretty sweet: planet.rb doesn't really want to inject html and random
 
 So feel free to customize planet.rb layouts any way you see fit (but please don't take away the author.html file! You should definitely give credit to the author of hte post)
 
+## Full automated setup
+
+I never took the time to write properly about this, but the lovely people at [Nilenso Software](http://nilenso.com/) - who's [blog](http://blog.nilenso.com) is powered by planet.rb - wrote an [amazing blog post](http://blog.nilenso.com/blog/2013/09/16/octopress-planet-dot-rb-and-the-nilenso-blog/) explaining their setup and reasons to pick their stack.
+
+If you are unsure of how planet.rb should be used make sure to check their blog post and setup, they have it figured out. :)
+
 
 ## Migrate your blog to Octopress using planet.rb!
 
