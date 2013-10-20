@@ -8,15 +8,23 @@ require 'box'
 
 include GLI::App
 
-
 program_desc 'Planet.rb is an awesome feed-aggregator gem that consumes RSS/Atom feeds and outputs them in a format suitable to use with Octopress or Jekyll'
 
 desc 'Parses planet.yml file for blogs and generates their posts in Jekyll compliant format under the _posts directory'
 command :generate do |c|
 
+  c.flag [:e,:extension], :desc => "Set post extension (markdown or html) ", :default_value => 'markdown', :long_desc => %Q{
+Set the post's extension to the flag value.
+The default is markdown, but many feeds deliver content
+in html, and sometimes it is better to use that directly,
+due to spacing issues possible with markdown.
+}
   c.action do |global_options,options,args|
 
     Planet::Importer.import('planet.yml') do |planet|
+
+      post_extension = options[:extension] || 'markdown'
+      post_extension = '.' + post_extension unless post_extension[0] == '.'
 
       posts_dir = planet.config.fetch('posts_directory', 'source/_posts/')
       FileUtils.mkdir_p(posts_dir)
@@ -24,7 +32,7 @@ command :generate do |c|
 
       planet.posts.each do |post|
         file_name = posts_dir + post.file_name
-        File.open(file_name + '.markdown', "w+") { |f| f.write(post.to_s) }
+        File.open(file_name + post_extension, "w+") { |f| f.write(post.to_s) }
       end
 
     end
