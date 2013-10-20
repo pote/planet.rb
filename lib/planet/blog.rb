@@ -53,7 +53,7 @@ class Planet
           title: entry.title.nil? ? self.name : entry.title,
           content: content,
           date: entry.published,
-          url: self.url + entry.url,
+          url: entry.url,
           blog: self
         )
 
