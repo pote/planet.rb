@@ -3,7 +3,7 @@ require File.join([File.dirname(__FILE__),'lib','planet','version.rb'])
 spec = Gem::Specification.new do |s|
   s.name = 'planet'
   s.version = Planet::VERSION
-  s.author = 'Pablo Astigarraga'
+  s.author = 'PoTe'
   s.email = 'pote@tardis.com.uy'
   s.homepage = 'http://github.com/pote/planet.rb'
   s.platform = Gem::Platform::RUBY
