@@ -140,3 +140,7 @@ I've written a brief [blog post](http://blog.poteland.com/blog/2012/04/20/migrat
 ## Contributors
 
 * [Samus_](https://github.com/git2samus) - His work on planet.rb is being sponsored by [Globant](http://www.globant.com/)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/pote/planet.rb/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
