@@ -29,7 +29,7 @@ class Planet::Post
       post_url: self.url,
       twitter: self.blog.twitter,
       twitter_url: "http://twitter.com/#{ self.blog.twitter }",
-      rss_data: self.rss_data,
+      post_rss_data: self.rss_data,
       blog_rss_data: self.blog.rss_data
     }
   end
