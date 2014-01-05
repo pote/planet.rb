@@ -2,21 +2,22 @@ require 'mustache'
 
 class Planet::Post
 
-  attr_accessor :title, :content, :date, :url, :blog
+  attr_accessor :title, :content, :date, :url, :blog, :rss_data
 
   def initialize(attributes = {})
-    self.title = attributes[:title]
-    self.content = attributes[:content]
-    self.date = attributes[:date]
-    self.url = attributes[:url]
-    self.blog = attributes[:blog]
+    self.title      = attributes[:title]
+    self.content    = attributes[:content]
+    self.date       = attributes[:date]
+    self.url        = attributes[:url]
+    self.blog       = attributes[:blog]
+    self.rss_data   = attributes[:rss_data]
   end
 
   def to_s
     "#{ header }#{ content }#{ footer }"
   end
 
-  def to_hash
+  def to_h
     {
       post_content: self.content,
       post_title: self.title,
@@ -27,9 +28,13 @@ class Planet::Post
       blog_name: self.blog.name,
       post_url: self.url,
       twitter: self.blog.twitter,
-      twitter_url: "http://twitter.com/#{ self.blog.twitter }"
+      twitter_url: "http://twitter.com/#{ self.blog.twitter }",
+      rss_data: self.rss_data,
+      blog_rss_data: self.blog.rss_data
     }
   end
+
+  alias_method :to_hash, :to_h
 
   def header
     ## TODO: We need categories/tags

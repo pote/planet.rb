@@ -4,18 +4,32 @@ require 'planet/parsers'
 class Planet
   class Blog
 
-    attr_accessor :url, :feed, :type, :name, :author, :image, :twitter, :posts, :planet
+    attr_accessor :url,
+                  :feed,
+                  :type,
+                  :name,
+                  :author,
+                  :image,
+                  :twitter,
+                  :posts,
+                  :planet,
+                  :rss_data
 
     def initialize(attributes = {})
-      self.url = attributes[:url]
-      self.feed = attributes[:feed]
-      self.type = attributes[:type]
-      self.name = attributes[:name]
-      self.author = attributes[:author]
-      self.image = attributes[:image]
-      self.twitter = attributes[:twitter]
-      self.posts = attributes.fetch(:posts, [])
-      self.planet = attributes[:planet]
+      self.url      = attributes[:url]
+      self.feed     = attributes[:feed]
+      self.type     = attributes[:type]
+      self.name     = attributes[:name]
+      self.author   = attributes[:author]
+      self.image    = attributes[:image]
+      self.twitter  = attributes[:twitter]
+      self.posts    = attributes.fetch(:posts, [])
+      self.planet   = attributes[:planet]
+
+      # Feedzirra parsed data is  made available for when the information
+      # provides is not enough. Transparency should help use cases we're
+      # not considering.
+      self.rss_data = nil
 
       # get parser-manager instance
       @parsers = Parsers.new
@@ -33,11 +47,13 @@ class Planet
 
     def on_fetch_success(feed)
       self.name ||= feed.title || 'the source'
-      self.url ||= feed.url
+      self.url  ||= feed.url
 
       if self.url.nil?
         abort "#{ self.author }'s blog does not have a url field on it's feed, you will need to specify it on planet.yml"
       end
+
+      self.rss_data = feed
 
       feed.entries.each do |entry|
         next unless whitelisted?(entry)
@@ -54,7 +70,8 @@ class Planet
           content: content,
           date: entry.published,
           url: entry.url,
-          blog: self
+          blog: self,
+          rss_data: entry
         )
 
         puts "=> Found post titled #{ @post.title } - by #{ @post.blog.author }"

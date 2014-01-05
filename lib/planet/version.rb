@@ -2,7 +2,7 @@ class Planet
   module Version
     MAJOR = 0
     MINOR = 5
-    PATCH = 1
+    PATCH = 2
 
     def self.to_s
       [MAJOR, MINOR, PATCH].join('.')
