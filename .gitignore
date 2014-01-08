@@ -3,3 +3,4 @@ _layouts/
 planet.yml
 *.gem
 *.gempsec
+.gs
