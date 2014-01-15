@@ -55,7 +55,7 @@ class Planet::Post
     name_date = date ? date.strftime('%Y-%m-%d') : nil
     name_title = title.downcase.scan(/\w+/).join('-')
 
-    [name_date, name_title].join('-')
+    [name_date, name_title].join('-')[0..59] # can return a file name that is too long, so truncate here to 60 chars
   end
 
 end
