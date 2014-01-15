@@ -4,3 +4,4 @@ planet.yml
 *.gem
 *.gempsec
 .gs
+.bundle/
