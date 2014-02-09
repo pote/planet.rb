@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    planet (0.5.2)
+    planet (0.5.3)
       box
       feedzirra
       gli
