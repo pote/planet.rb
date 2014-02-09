@@ -116,6 +116,7 @@ So this is pretty sweet: planet.rb doesn't really want to inject html and random
    {{ post_date }}              # => "2012-04-14 05:17:00 UTC"
    {{ post_content }}           # => "I’ve been hurting to write this ever since we had the idea of creating a Planet for Cubox..." (Continued)
    {{ blog_name }}              # => "This is where I tell you stuff"
+   {{ blog_slug }}              # => "this-is-where-i-tell-you-stuff"
    {{ blog_url }}               # => "http://blog.poteland.com"
    {{ image_url }}              # => "http://poteland.com/images/avatars/red_mage.png"
    {{ author }}                 # => "Pablo Astigarraga"
