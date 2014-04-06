@@ -1,4 +1,4 @@
-require 'feedzirra'
+require 'feedjira'
 require 'set'
 
 # Parsers class - manager for the feed parsers
@@ -44,7 +44,7 @@ class Planet::Parsers
   end
 
   # returns any parser that can handle this feeds' domain,
-  # defaults to Feedzirra if none available.
+  # defaults to Feedjira if none available.
   def get_parser_for(feed)
     feed_domain = URI(feed).host
 
@@ -52,7 +52,7 @@ class Planet::Parsers
       return parser if feed_domain.end_with? domain
     end
 
-    return Feedzirra::Feed # default generic parser
+    return Feedjira::Feed # default generic parser
   end
 end
 
