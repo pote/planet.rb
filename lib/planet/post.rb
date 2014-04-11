@@ -1,3 +1,4 @@
+require 'stringex_lite'
 require 'mustache'
 
 class Planet::Post
@@ -26,6 +27,7 @@ class Planet::Post
       author: self.blog.author,
       blog_url: self.blog.url,
       blog_name: self.blog.name,
+      blog_slug: self.blog.name.to_url(:limit => 50, :truncate_words => true),
       post_url: self.url,
       twitter: self.blog.twitter,
       twitter_url: "http://twitter.com/#{ self.blog.twitter }",

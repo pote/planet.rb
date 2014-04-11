@@ -1,11 +1,12 @@
 PATH
   remote: .
   specs:
-    planet (0.5.2)
+    planet (0.5.3)
       box
       feedzirra
       gli
       mustache
+      stringex
 
 GEM
   remote: http://rubygems.org/
@@ -16,7 +17,7 @@ GEM
       curb (~> 0.8.1)
       loofah (~> 1.2.1)
       sax-machine (~> 0.2.1)
-    gli (2.8.1)
+    gli (2.9.0)
     loofah (1.2.1)
       nokogiri (>= 1.4.4)
     mini_portile (0.5.2)
@@ -25,6 +26,7 @@ GEM
       mini_portile (~> 0.5.0)
     sax-machine (0.2.1)
       nokogiri (~> 1.6.0)
+    stringex (2.1.2)
 
 PLATFORMS
   ruby
