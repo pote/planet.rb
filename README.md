@@ -97,11 +97,13 @@ blogs:
     feed:   "http://blog.cuboxlabs.com/atom.xml"    # => RSS/Atom feed
     image:  "http://cubox-website.s3.amazonaws.com/i-work-at-cubox/i-work-at-cubox-badge-small.png"  # => Image to use when doing credits
 
-  - author: "Pablo Astigarraga"
-    feed:   "http://blog.poteland.com/atom.xml"
-    image:  "http://poteland.com/images/avatars/red_mage.png"
-    twitter: "poteland"                             # => Do you want a link to the user's twitter account next to the credits? You got it.
-    url:    "http://blog.poteland.com"              # => This is not needed in most cases, because it's picked up from the feed, but if it's not on the feed
+  - author:    "Pablo Astigarraga"
+    feed:      "http://blog.poteland.com/atom.xml"
+    image:     "http://poteland.com/images/avatars/red_mage.png"
+    categories: "programming"                       # => If you want to group your posts by categories or
+    tags:      "go ruby jekyll git"                 # => tag them, you can do that.
+    twitter:   "poteland"                           # => Do you want a link to the user's twitter account next to the credits? You got it.
+    url:       "http://blog.poteland.com"           # => This is not needed in most cases, because it's picked up from the feed, but if it's not on the feed
                                                     #    then planet will ask you to specify it. :)
 
 ```
@@ -118,6 +120,8 @@ So this is pretty sweet: planet.rb doesn't really want to inject html and random
    {{ blog_name }}              # => "This is where I tell you stuff"
    {{ blog_slug }}              # => "this-is-where-i-tell-you-stuff"
    {{ blog_url }}               # => "http://blog.poteland.com"
+   {{ blog_categories }}        # => "programming planet"
+   {{ blog_tags }}              # => "go ruby jekyll"
    {{ image_url }}              # => "http://poteland.com/images/avatars/red_mage.png"
    {{ author }}                 # => "Pablo Astigarraga"
    {{ twitter }}                # => "poteland"

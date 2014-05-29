@@ -154,6 +154,8 @@ title: "{{ post_title }}"
 kind: article
 created_at: {{ post_date }}
 author: {{ author }}
+categories: {{ blog_categories }}
+tags: {{ blog_tags }}
 layout: post
 ---
 
@@ -176,4 +178,6 @@ blogs:
     image:  "http://poteland.com/images/avatars/red_mage.png"
     # Other fields:
     twitter: "poteland"
+    categories: "programming"
+    tags: "go ruby jekyll git"
     url: "http://blog.poteland.com"    # => only required for people that don\'t have a \'url\' field on their RSS/Atom field'
