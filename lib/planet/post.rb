@@ -28,6 +28,8 @@ class Planet::Post
       blog_url: self.blog.url,
       blog_name: self.blog.name,
       blog_slug: self.blog.name.to_url(:limit => 50, :truncate_words => true),
+      blog_categories: self.blog.categories,
+      blog_tags: self.blog.tags,
       post_url: self.url,
       twitter: self.blog.twitter,
       twitter_url: "http://twitter.com/#{ self.blog.twitter }",
@@ -39,7 +41,6 @@ class Planet::Post
   alias_method :to_hash, :to_h
 
   def header
-    ## TODO: We need categories/tags
     file = self.blog.planet.config.fetch('templates_directory', '_layouts/') + 'header.md'
     file_contents = File.read(file)
 

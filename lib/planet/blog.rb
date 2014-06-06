@@ -12,19 +12,23 @@ class Planet
                   :image,
                   :twitter,
                   :posts,
+                  :categories,
+                  :tags,
                   :planet,
                   :rss_data
 
     def initialize(attributes = {})
-      self.url      = attributes[:url]
-      self.feed     = attributes[:feed]
-      self.type     = attributes[:type]
-      self.name     = attributes[:name]
-      self.author   = attributes[:author]
-      self.image    = attributes[:image]
-      self.twitter  = attributes[:twitter]
-      self.posts    = attributes.fetch(:posts, [])
-      self.planet   = attributes[:planet]
+      self.url        = attributes[:url]
+      self.feed       = attributes[:feed]
+      self.type       = attributes[:type]
+      self.name       = attributes[:name]
+      self.author     = attributes[:author]
+      self.image      = attributes[:image]
+      self.twitter    = attributes[:twitter]
+      self.posts      = attributes.fetch(:posts, [])
+      self.planet     = attributes[:planet]
+      self.categories = attributes.fetch(:categories, '')
+      self.tags       = attributes.fetch(:tags, '')
 
       # Feedzirra parsed data is  made available for when the information
       # provides is not enough. Transparency should help use cases we're
