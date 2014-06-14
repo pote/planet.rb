@@ -75,6 +75,7 @@ class Planet
           date: entry.published,
           url: entry.url,
           blog: self,
+          categories: process_categories(entry.categories),
           rss_data: entry
         )
 
@@ -94,6 +95,10 @@ class Planet
       end
 
       html
+    end
+
+    def process_categories(categories)
+      categories.map { |category| category.downcase.gsub(/\s+/,'-').gsub(/[^a-z0-9\-_]/, '') }.join " "
     end
 
     def whitelisted?(entry)

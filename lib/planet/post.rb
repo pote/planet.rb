@@ -3,11 +3,12 @@ require 'mustache'
 
 class Planet::Post
 
-  attr_accessor :title, :content, :date, :url, :blog, :rss_data
+  attr_accessor :title, :content, :categories, :date, :url, :blog, :rss_data
 
   def initialize(attributes = {})
     self.title      = attributes[:title]
     self.content    = attributes[:content]
+    self.categories = attributes[:categories]
     self.date       = attributes[:date]
     self.url        = attributes[:url]
     self.blog       = attributes[:blog]
@@ -23,6 +24,7 @@ class Planet::Post
       post_content: self.content,
       post_title: self.title,
       post_date: self.date,
+      post_categories: self.categories,
       image_url: self.blog.image,
       author: self.blog.author,
       blog_url: self.blog.url,
