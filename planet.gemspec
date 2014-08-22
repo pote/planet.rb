@@ -18,4 +18,5 @@ spec = Gem::Specification.new do |s|
   s.add_runtime_dependency('mustache')
   s.add_runtime_dependency('box')
   s.add_runtime_dependency("stringex")
+  s.add_runtime_dependency('sanitize')
 end
