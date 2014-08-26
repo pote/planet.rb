@@ -6,6 +6,7 @@ spec = Gem::Specification.new do |s|
   s.author = 'PoTe'
   s.email = 'pote@tardis.com.uy'
   s.homepage = 'http://github.com/pote/planet.rb'
+  s.licenses = ['MIT']
   s.platform = Gem::Platform::RUBY
   s.summary = 'An rss/atom feed aggregator designed to work with Octopress/Jekyll'
   s.files = Dir['bin/*'] + Dir['lib/**/*.rb']
