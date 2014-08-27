@@ -61,7 +61,9 @@ You will most likely want to edit this yml file (unless you reallly really like 
 => You are missing some files in your templates directory, planet.rb will create them for you - make sure to review them on source/_layouts/!
 => Created default source/_layouts/author.html
 => Created default source/_layouts/header.md
-=> Parsing http://blog.poteland.com/atom.xml
+=> Parsing http://poteland.com/feed.xml
+=> Found post titled How To Get Good Developers - by Pablo Astigarraga
+=> Found post titled Migrate your blog to Octopress using planet.rb - by Pablo Astigarraga
 => Found post titled I made a pretty gem - Planet.rb - by Pablo Astigarraga
 => Parsing http://blog.cuboxlabs.com/atom.xml
 => Found post titled Mozilla Developer Network Hack Day Montevideo 2012 - by Cubox
@@ -77,7 +79,7 @@ You will most likely want to edit this yml file (unless you reallly really like 
 => Found post titled One App in the App Store - by Cubox
 => Found post titled A new website - by Cubox
 => Found post titled Google Chrome OS: Obvious to the point of being boring. - by Cubox
-=> Writing 14 posts to the source/_posts/ directory
+=> Writing 16 posts to the source/_posts/ directory
 ```
 
 And that's it! your source/_posts/ directory (or whatever you selected in your planet.yml file) should be populated with all relevant posts from the blogs you've configured, and  it's ready to be consumed by Octopress. :)
@@ -98,12 +100,12 @@ blogs:
     image:  "http://cubox-website.s3.amazonaws.com/i-work-at-cubox/i-work-at-cubox-badge-small.png"  # => Image to use when doing credits
 
   - author:    "Pablo Astigarraga"
-    feed:      "http://blog.poteland.com/atom.xml"
-    image:     "http://poteland.com/images/avatars/red_mage.png"
+    feed:      "http://poteland.com/feed.xml"
+    image:     "http://poteland.com/images/site-logo.png"
     categories: "programming"                       # => If you want to group your posts by categories or
     tags:      "go ruby jekyll git"                 # => tag them, you can do that.
     twitter:   "poteland"                           # => Do you want a link to the user's twitter account next to the credits? You got it.
-    url:       "http://blog.poteland.com"           # => This is not needed in most cases, because it's picked up from the feed, but if it's not on the feed
+    url:       "http://poteland.com/articles"       # => This is not needed in most cases, because it's picked up from the feed, but if it's not on the feed
                                                     #    then planet will ask you to specify it. :)
 
 ```
@@ -114,15 +116,15 @@ So this is pretty sweet: planet.rb doesn't really want to inject html and random
 
 ```mustache
    {{ post_title }}             # => "I Made a Pretty Gem - Planet.rb"
-   {{ post_url }}               # => "http://blog.poteland.com/blog/2012/04/14/i-made-a-pretty-gem-planet-dot-rb/"
+   {{ post_url }}               # => "http://poteland.com/blog/i-made-a-pretty-gem-planet-dot-rb/"
    {{ post_date }}              # => "2012-04-14 05:17:00 UTC"
    {{ post_content }}           # => "I’ve been hurting to write this ever since we had the idea of creating a Planet for Cubox..." (Continued)
    {{ blog_name }}              # => "This is where I tell you stuff"
    {{ blog_slug }}              # => "this-is-where-i-tell-you-stuff"
-   {{ blog_url }}               # => "http://blog.poteland.com"
+   {{ blog_url }}               # => "http://poteland.com/articles"
    {{ blog_categories }}        # => "programming planet"
    {{ blog_tags }}              # => "go ruby jekyll"
-   {{ image_url }}              # => "http://poteland.com/images/avatars/red_mage.png"
+   {{ image_url }}              # => "http://poteland.com/images/site-logo.png"
    {{ author }}                 # => "Pablo Astigarraga"
    {{ twitter }}                # => "poteland"
    {{ twitter_url }}            # => "http://twitter.com/poteland"
@@ -139,7 +141,7 @@ If you are unsure of how planet.rb should be used make sure to check their blog 
 
 ## Migrate your blog to Octopress using planet.rb!
 
-I've written a brief [blog post](http://blog.poteland.com/blog/2012/04/20/migrate-your-blog-to-octopress-using-planet-dot-rb/) about how to do this. Works like a charm :).
+I've written a brief [blog post](http://poteland.com/blog/migrate-your-blog-to-octopress-using-planet-dot-rb/) about how to do this. Works like a charm :).
 
 
 ## Contributors

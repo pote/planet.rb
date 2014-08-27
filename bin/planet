@@ -175,10 +175,10 @@ blogs:
     image:  "http://cuboxlabs.com/img/cubox-humans/could-be-you.png"
 
   - author: "Pablo Astigarraga"
-    feed:   "http://blog.poteland.com/atom.xml"
-    image:  "http://poteland.com/images/avatars/red_mage.png"
+    feed:   "http://poteland.com/feed.xml"
+    image:  "http://poteland.com/images/site-logo.png"
     # Other fields:
     twitter: "poteland"
     categories: "programming"
     tags: "go ruby jekyll git"
-    url: "http://blog.poteland.com"    # => only required for people that don\'t have a \'url\' field on their RSS/Atom field'
+    url: "http://poteland.com/articles"    # => only required for people that don\'t have a \'url\' field on their RSS/Atom field'
