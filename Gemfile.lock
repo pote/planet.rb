@@ -2,12 +2,12 @@ PATH
   remote: .
   specs:
     planet (0.5.4)
-      box
-      feedjira
-      gli
-      mustache
-      sanitize
-      stringex
+      box (~> 0.1, >= 0.1.1)
+      feedjira (~> 1.3, >= 1.3.1)
+      gli (~> 2.12, >= 2.12.0)
+      mustache (~> 0.99, >= 0.99.6)
+      sanitize (~> 3.0, >= 3.0.0)
+      stringex (~> 2.5, >= 2.5.2)
 
 GEM
   remote: http://rubygems.org/
