@@ -4,7 +4,7 @@
 
 This IS a work in progress, although most functionality is already implemented, do not expect much stability, and of course patches are appreciated. :)
 
-This gem is also **[gloriously untested](http://jamiesharpe.info/image/comics/haters/haters_gonna_hate3.jpg)** so I will assume that each time we use it a TDD enthusiast's head explodes. I expect, of course, to add some testing later, but for now I'd rather focus on functionality.
+This gem is also **[gloriously untested](https://camo.githubusercontent.com/47a95d835ab6fb66486fb17164fe091ed1ab007f/687474703a2f2f69313030312e70686f746f6275636b65742e636f6d2f616c62756d732f61663133382f637970636f64652f46756e6e7925323053747566662f6861746572735f676f6e6e615f68617465332e6a7067)** so I will assume that each time we use it a TDD enthusiast's head explodes. I expect, of course, to add some testing later, but for now I'd rather focus on functionality.
 
 ## What is this devilry?
 
