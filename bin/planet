@@ -97,7 +97,7 @@ command :update_templates do |c|
     File.delete(author) if File.exists?(author)
     File.delete(header) if File.exists?(header)
 
-    response = `#{$0} -d #{global_options[:config]} create_templates`
+    response = `#{$0} -c #{global_options[:config]} create_templates`
     puts response
   end
 end
