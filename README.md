@@ -61,25 +61,24 @@ You will most likely want to edit this yml file (unless you reallly really like 
 => You are missing some files in your templates directory, planet.rb will create them for you - make sure to review them on source/_layouts/!
 => Created default source/_layouts/author.html
 => Created default source/_layouts/header.md
-=> Parsing http://poteland.com/feed.xml
-=> Found post titled How To Get Good Developers - by Pablo Astigarraga
-=> Found post titled Migrate your blog to Octopress using planet.rb - by Pablo Astigarraga
-=> Found post titled I made a pretty gem - Planet.rb - by Pablo Astigarraga
-=> Parsing http://blog.cuboxlabs.com/atom.xml
-=> Found post titled Mozilla Developer Network Hack Day Montevideo 2012 - by Cubox
-=> Found post titled Cubox brings back Ruby meetups to Montevideo - by Cubox
-=> Found post titled We're hiring - by Cubox
-=> Found post titled rubydeps - New gem by Cuboxer - by Cubox
-=> Found post titled Cuboxers at wroc_love.rb in Poland - by Cubox
-=> Found post titled Open Source Projects - by Cubox
-=> Found post titled Machine learning in perspective - by Cubox
-=> Found post titled Cubox on finances - by Cubox
-=> Found post titled So what is Uruguay like? - by Cubox
-=> Found post titled Supporting this weekend's Rails Bugmash - by Cubox
-=> Found post titled One App in the App Store - by Cubox
-=> Found post titled A new website - by Cubox
-=> Found post titled Google Chrome OS: Obvious to the point of being boring. - by Cubox
-=> Writing 16 posts to the source/_posts/ directory
+=> Parsing http://www.rss-specifications.com/blog-feed.xml
+=> Found post titled Understanding RSS Feeds - by Sample: RSS Specifications
+=> Found post titled Create an RSS Feed - by Sample: RSS Specifications
+=> Found post titled Social Media in a recession, does it make financial sense? - by Sample: RSS Specifications
+=> Found post titled Feds Launch Social Media Verification Registry - by Sample: RSS Specifications
+=> Found post titled Kids, Safety and Social Media - by Sample: RSS Specifications
+...
+=> Parsing http://www.feedforall.com/sample.xml
+=> Found post titled RSS Solutions for Restaurants - by Anonimus Author
+=> Found post titled RSS Solutions for Schools and Colleges - by Anonimus Author
+=> Found post titled RSS Solutions for Computer Service Companies - by Anonimus Author
+=> Found post titled RSS Solutions for Governments - by Anonimus Author
+=> Found post titled RSS Solutions for Politicians - by Anonimus Author
+=> Found post titled RSS Solutions for Meteorologists - by Anonimus Author
+=> Found post titled RSS Solutions for Realtors & Real Estate Firms - by Anonimus Author
+=> Found post titled RSS Solutions for Banks / Mortgage Companies - by Anonimus Author
+=> Found post titled RSS Solutions for Law Enforcement - by Anonimus Author
+=> Writing 594 posts to the source/_posts/ directory.
 ```
 
 And that's it! your source/_posts/ directory (or whatever you selected in your planet.yml file) should be populated with all relevant posts from the blogs you've configured, and  it's ready to be consumed by Octopress. :)
@@ -90,23 +89,23 @@ The planet.yml file contains the basic config options for planet. It consists of
 
 ```yaml
 planet:
-    posts_directory: source/_posts/                 # => Posts text files will be written into this directory
-    templates_directory: source/_layouts/       # => Planet specific layouts will be saved here, I suggest that it matches your Octopress/Jekyll layout directory.
-    whitelisted_tags: []                                   # => Only posts that are tagged with any of these tags will be imported
+    posts_directory: source/_posts/           # => Posts text files will be written into this directory
+    templates_directory: source/_layouts/     # => Planet specific layouts will be saved here, I suggest that it matches your Octopress/Jekyll layout directory.
+    whitelisted_tags: []                      # => Only posts that are tagged with any of these tags will be imported
 
 blogs:
-  - author: "Cubox"                                 # => Name that we will use as the author of this post (soon you wont have to specify this :)
-    feed:   "http://blog.cuboxlabs.com/atom.xml"    # => RSS/Atom feed
-    image:  "http://cubox-website.s3.amazonaws.com/i-work-at-cubox/i-work-at-cubox-badge-small.png"  # => Image to use when doing credits
+  - author: "Sample: RSS Specifications"                          # => Name that we will use as the author of this post
+    feed:   "http://www.rss-specifications.com/blog-feed.xml"     # => RSS/Atom feed
+    image:  "http://www.rss-specifications.com/rss-spec-rss.gif"  # => Image to use when doing credits
 
-  - author:    "Pablo Astigarraga"
-    feed:      "http://poteland.com/feed.xml"
-    image:     "http://poteland.com/images/site-logo.png"
-    categories: "programming"                       # => If you want to group your posts by categories or
-    tags:      "go ruby jekyll git"                 # => tag them, you can do that.
-    twitter:   "poteland"                           # => Do you want a link to the user's twitter account next to the credits? You got it.
-    url:       "http://poteland.com/articles"       # => This is not needed in most cases, because it's picked up from the feed, but if it's not on the feed
-                                                    #    then planet will ask you to specify it. :)
+  - author:    "Anonimus Author"
+    feed:      "http://www.feedforall.com/sample.xml"
+    image:     "http://www.feedforall.com/ffalogo48x48.gif"
+    categories: "programming"                 # => If you want to group your posts by categories or
+    tags:      "test rss feed"                # => tag them, you can do that.
+    twitter:   "poteland"                     # => Do you want a link to the user's twitter account next to the credits? You got it.
+    url:       "http://www.feedforall.com/sample-feeds.htm" # => This is not needed in most cases, because it's picked up from the feed, but if it's not on the feed
+                                                            #    then planet will ask you to specify it. :)
 
 ```
 

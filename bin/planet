@@ -170,15 +170,15 @@ planet:
 
 blogs:
   # Bare minimum to get it working
-  - author: "Cubox"
-    feed:   "http://blog.cuboxlabs.com/atom.xml"
-    image:  "http://cuboxlabs.com/img/cubox-humans/could-be-you.png"
+  - author: "Sample: RSS Specifications"
+    feed:   "http://www.rss-specifications.com/blog-feed.xml"
+    image:  "http://www.rss-specifications.com/rss-spec-rss.gif"
 
-  - author: "Pablo Astigarraga"
-    feed:   "http://poteland.com/feed.xml"
-    image:  "http://poteland.com/images/site-logo.png"
+  - author: "Anonimus Author"
+    feed:   "http://www.feedforall.com/sample.xml"
+    image:  "http://www.feedforall.com/ffalogo48x48.gif"
     # Other fields:
     twitter: "poteland"
     categories: "programming"
-    tags: "go ruby jekyll git"
-    url: "http://poteland.com/articles"    # => only required for people that don\'t have a \'url\' field on their RSS/Atom field'
+    tags: "test rss feed"
+    url: "http://www.feedforall.com/sample-feeds.htm"    # => only required for people that don\'t have a \'url\' field on their RSS/Atom field'
