@@ -1,5 +1,6 @@
 require 'feedjira'
 require 'set'
+require 'uri'
 
 # Parsers class - manager for the feed parsers
 #
