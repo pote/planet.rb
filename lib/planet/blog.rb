@@ -47,7 +47,7 @@ class Planet
       # parser instances should mimick Feedzirra interface
       parser.fetch_and_parse(self.feed,
                             :on_success => lambda { |url, feed| on_fetch_success(feed) },
-                            :on_failure => lambda { |url, response_code, response_header, response_body| puts "\t=> Failed to fetch #{url} with response_code: #{response_code}" })
+                            :on_failure => lambda { |url, response| puts "\t=> Failed to fetch #{url.inspect} the server returned: #{response}" })
     end
 
     def on_fetch_success(feed)
