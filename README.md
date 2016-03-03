@@ -41,10 +41,10 @@ Install the planet.rb gem
 
 ```bash
 ▸ gem install planet
-Successfully installed planet-0.2.4
+Successfully installed planet-0.5.5
 1 gem installed
-Installing ri documentation for planet-0.2.4...
-Installing RDoc documentation for planet-0.2.4...
+Installing ri documentation for planet-0.5.5...
+Installing RDoc documentation for planet-0.5.5...
 ```
 
 Create a sample planet.yml config file
