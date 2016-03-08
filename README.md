@@ -20,10 +20,11 @@ list of blogs and output them in a format suitable for usage with these amazing 
 
 ## Main Features
 
-* Parse blogs, save posts as plain text files, ready to use with Octopress/Jekyll.
+* Parse blogs, save posts as plain markdown files, ready to use with Octopress/Jekyll.
 * Dead easy to set up.
 * Can be used on a regular blog, to import posts from other blogs while maintaining proper credits to the original author.
 * Completely unobstrusive, will not mess up your Octopress or Jekyll set up by changing files around.
+* Imported posts are converted to markdown to sanitize HTML and achieve a uniform appearance.
 
 ## Basic Set Up
 

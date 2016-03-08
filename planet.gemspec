@@ -22,5 +22,5 @@ spec = Gem::Specification.new do |s|
   s.add_runtime_dependency 'mustache',  '~> 0.99',  '>= 0.99.6'
   s.add_runtime_dependency 'box',       '~> 0.1',   '>= 0.1.1'
   s.add_runtime_dependency 'stringex',  '~> 2.5',   '>= 2.5.2'
-  s.add_runtime_dependency 'sanitize',  '~> 3.0',   '>= 3.0.0'
+  s.add_runtime_dependency 'reverse_markdown',      '~> 1.0',  '>= 1.0.1'
 end
