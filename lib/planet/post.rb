@@ -32,7 +32,7 @@ class Planet::Post
       blog_tags: self.blog.tags,
       post_url: self.url,
       twitter: self.blog.twitter,
-      twitter_url: "http://twitter.com/#{ self.blog.twitter }",
+      twitter_url: self.blog.twitter.to_s == '' ? '' : "http://twitter.com/#{ self.blog.twitter }",
       post_rss_data: self.rss_data,
       blog_rss_data: self.blog.rss_data
     }

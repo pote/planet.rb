@@ -141,10 +141,12 @@ exit run(ARGV)
 
 __END__
 @@ author
+
+{::options parse_block_html="true" /}
 <div class="author">
-  <img src="{{ image_url }}" style="width: 96px; height: 96;">
-  <span style="position: absolute; padding: 32px 15px;">
-    <i>Original post by <a href="{{ twitter_url }}">{{ author }}</a> - check out <a href="{{ blog_url }}">{{ blog_name }}</a></i>
+   <img src="{{ image_url }}" style="width: 96px; height: 96;">
+   <span style="position: absolute; padding: 32px 15px;">{% comment %}Remark that post_url refers to the *original* post url, not Jekyll's post_url variable. Moreover, planet.rb preprocesses the substitutions with Mustache.{% endcomment %}
+      <i>{% if "{{ post_url }}" != "" %}<a href="{{ post_url }}">Original post</a>{% else %}Original post{% endif %} by {% if "{{ twitter_url }}" != "" %}<a href="{{ twitter_url }}">{{ author }}</a>{% else %}{{ author }}{% endif %} &mdash; check out <a href="{{ blog_url }}">{{ blog_name }}</a>.</i>
   </span>
 </div>
 
@@ -156,6 +158,7 @@ created_at: {{ post_date }}
 author: "{{ author }}"
 categories: {{ blog_categories }}
 tags: {{ blog_tags }}
+orig_url: {{ post_url }}
 layout: post
 ---
 
@@ -166,7 +169,6 @@ planet:
     posts_directory: source/_posts/
     templates_directory: source/_layouts/
     whitelisted_tags: []
-    sanitize_html: false
 
 blogs:
   # Bare minimum to get it working

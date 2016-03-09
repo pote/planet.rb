@@ -1,4 +1,4 @@
-require 'sanitize'
+require 'reverse_markdown'
 require 'planet/post'
 require 'planet/parsers'
 
@@ -70,9 +70,7 @@ class Planet
                     abort "=> No content found on entry"
                   end
 
-        if self.planet.config.fetch('sanitize_html', false)
-            content = Sanitize.fragment(content, Sanitize::Config::RELAXED)
-        end
+        content = ReverseMarkdown.convert(content, unknown_tags: :bypass)
 
         self.posts << @post = Post.new(
           title: entry.title.nil? ? self.name : entry.title,
